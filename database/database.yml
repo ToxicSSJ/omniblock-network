@@ -1,0 +1,20 @@
+#============================================================================================#
+#  * ------------------------------------------------------------------------------------ *  #
+#  *  Omniblock Developers Team - Copyright (C) 2016 - 2017                               *  #
+#  *                                                                                      *  #
+#  *  This program is not a free software; you cannot redistribute it and/or modify it.   *  #
+#  *                                                                                      *  #
+#  *  Only this enabled the editing and writing by the members of the team.               *  #
+#  *  No third party is allowed to modification of the code.                              *  #
+#  *                                                                                      *  #
+#  * ------------------------------------------------------------------------------------ *  #
+#============================================================================================#
+
+#[Database Config]:
+database:
+     mysql:
+       database: Database
+       host: 192.168.0.1
+       port: 3306
+       user: root
+       pass: password
