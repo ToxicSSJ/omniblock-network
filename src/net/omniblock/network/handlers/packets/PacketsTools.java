@@ -3,6 +3,9 @@ package net.omniblock.network.handlers.packets;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 
@@ -13,6 +16,38 @@ import java.lang.reflect.Method;
  */
 public class PacketsTools {
 
+	protected static Map<String, String> boosters = new HashMap<String, String>();
+	
+	public static Set<Map.Entry<String, String>> getBoosters(){
+		return boosters.entrySet();
+	}
+	
+	public static boolean isBoosterEnabled(String gametype) {
+		return boosters.containsKey(gametype);
+	}
+	
+	public static String getPlayerOfBooster(String gametype) {
+		if(isBoosterEnabled(gametype)) return boosters.get(gametype);
+		return "Unknow";
+	}
+	
+	public static void setBoosters(String gameboosted) {
+		
+		boosters.clear();
+		
+		String[] data = gameboosted.split(",");
+		
+		for(String k : data) {
+			
+			String gametype = k.split("#")[0];
+			String playername = k.split("#")[1];
+			
+			boosters.put(gametype, playername);
+			
+		}
+		
+	}
+	
 	/**
 	 * 
 	 * Este metodo ejecuta el juego Skywars por medio de los datos propiciados y

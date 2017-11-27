@@ -90,6 +90,32 @@ public enum RankType {
 		return TextUtil.format(getPrefix() + " &" + color + player.getName());
 	}
 
+	public static RankType getByName(String rankName) {
+		
+		for(RankType type : RankType.values()) {
+			
+			if(type.getName().equalsIgnoreCase(rankName))
+				return type;
+			
+		}
+		
+		return RankType.USER;
+		
+	}
+	
+	public static boolean exists(String rankName) {
+		
+		for(RankType type : RankType.values()) {
+			
+			if(type.getName().equalsIgnoreCase(rankName))
+				return true;
+			
+		}
+		
+		return false;
+		
+	}
+	
 	public String getPrefix() {
 		return prefixname;
 	}

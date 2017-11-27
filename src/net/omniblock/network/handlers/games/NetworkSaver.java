@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.bukkit.Bukkit;
 
+import net.omniblock.network.handlers.packets.PacketsTools;
 import net.omniblock.packets.network.Packets;
 import net.omniblock.packets.network.structure.data.PacketSocketData;
 import net.omniblock.packets.network.structure.data.PacketStructure;
@@ -21,43 +22,16 @@ import net.omniblock.packets.object.external.ServerType;
 
 public abstract class NetworkSaver {
 
-	public static Map<String, String> ACTIVED_BOOSTERS = new HashMap<String, String>();
-
 	public static Map<ServerType, Integer> SERVER_ONLINE_PLAYERS = new HashMap<ServerType, Integer>();
 	public static Map<GamePreset, Integer> GAMES_ONLINE_PLAYERS = new HashMap<GamePreset, Integer>();
 
-	static {
-
-		ACTIVED_BOOSTERS.put("Skywars", "none");
-
-	}
-
+	@SuppressWarnings("unlikely-arg-type")
 	public static int getPlayers(GamePreset gp) {
 		return SERVER_ONLINE_PLAYERS.get(gp);
 	}
 
 	public static int getPlayers(ServerType st) {
 		return SERVER_ONLINE_PLAYERS.get(st);
-	}
-
-	public static String getBoosted(String gametype) {
-
-		if (ACTIVED_BOOSTERS.containsKey(gametype)) {
-
-			String status = ACTIVED_BOOSTERS.get(gametype);
-
-			if (status == null || status == "none") {
-
-				return null;
-
-			}
-
-			return status;
-
-		}
-
-		return null;
-
 	}
 
 	public static void requestBoostedGames() {
@@ -70,14 +44,14 @@ public abstract class NetworkSaver {
 					@Override
 					public void readRespose(PacketSocketData<ResposeBoostedGamesPacket> packetsocketdata) {
 
-						PacketStructure data = packetsocketdata.getStructure();
+						PacketStructure structure = packetsocketdata.getStructure();
 
-						System.out.println("boostedgame -> " + data.get(DataType.STRINGS, "boostedgames"));
+						PacketsTools.setBoosters(structure.get(DataType.STRINGS, "boostedgames"));
+						return;
 
 					}
 
 				});
-
 		return;
 
 	}

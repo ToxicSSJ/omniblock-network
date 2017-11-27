@@ -18,15 +18,19 @@ import org.bukkit.entity.Player;
 public class StaticSidebarBoard extends Board {
 
 	private SidebarBoardType type;
+	
 	private Object data;
-
-	public StaticSidebarBoard(String... elements) {
+	private boolean health;
+	
+	public StaticSidebarBoard(boolean health, String... elements) {
 		this.data = elements;
+		this.health = health;
 		this.type = SidebarBoardType.UNRANKED;
 	}
 
-	public StaticSidebarBoard(String title, HashMap<String, Integer> elements) {
+	public StaticSidebarBoard(String title, HashMap<String, Integer> elements, boolean health) {
 		this.data = new Object[] { title, elements };
+		this.health = health;
 		this.type = SidebarBoardType.UNRANKED;
 	}
 
@@ -39,7 +43,7 @@ public class StaticSidebarBoard extends Board {
 					(HashMap<String, Integer>) ((Object[]) data)[1]);
 			return;
 		case UNRANKED:
-			ScoreboardUtil.unrankedSidebarDisplay(p, (String[]) data);
+			ScoreboardUtil.unrankedSidebarDisplay(p, (String[]) data, health);
 		}
 
 	}

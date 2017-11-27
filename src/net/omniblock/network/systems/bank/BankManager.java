@@ -27,46 +27,42 @@ public class BankManager implements CommandExecutor {
 
 			if (args.length >= 3) {
 
-				if (!Resolver.hasLastName(args[0])) {
+				if (!Resolver.hasLastName(args[1])) {
 
-					sender.sendMessage(TextUtil.format("&cEl jugador " + args[0] + " no existe!"));
+					sender.sendMessage(TextUtil.format("&cEl jugador " + args[1] + " no existe!"));
 					return true;
 
 				}
 
-				if (args[1].equalsIgnoreCase("dar") || args[1].equalsIgnoreCase("añadir")) {
+				if (args[0].equalsIgnoreCase("dar") || args[0].equalsIgnoreCase("añadir")) {
 
 					int money = NumberUtil.valueOf(args[2]);
-					BankBase.addMoney((Player) sender, money);
+					BankBase.addMoney(args[1], money);
 
 					sender.sendMessage(TextUtil
-							.format("&aLe has añadido &7" + money + " &ade dinero al jugador &7" + args[0] + "&a!"));
+							.format("&aLe has añadido &7" + money + " &ade dinero al jugador &7" + args[1] + "&a!"));
 					return true;
-
 				}
 
-				if (args[1].equalsIgnoreCase("setear") || args[1].equalsIgnoreCase("elegir")) {
+				if (args[0].equalsIgnoreCase("setear") || args[0].equalsIgnoreCase("elegir")) {
 
 					int money = NumberUtil.valueOf(args[2]);
-					BankBase.setMoney((Player) sender, money);
+					BankBase.setMoney(args[1], money);
 
 					sender.sendMessage(TextUtil
-							.format("&aLe has seteado &7" + money + " &ade dinero al jugador &7" + args[0] + "&a!"));
+							.format("&aLe has seteado &7" + money + " &ade dinero al jugador &7" + args[1] + "&a!"));
 					return true;
-
 				}
 
-				sender.sendMessage(TextUtil.format("&cNo se ha identificado el argumento &7" + args[1] + "&c!"));
+				sender.sendMessage(TextUtil.format("&cNo se ha identificado el argumento &7" + args[0] + "&c!"));
 				return true;
-
 			}
 
-			sender.sendMessage(TextUtil.format("&cNo se ha reconocido el argumento &7" + args[0] + "&c!"));
+			sender.sendMessage(TextUtil.format("&cFaltan más argumentos!"));
 			return true;
-
 		}
 
 		return false;
-
 	}
+	
 }

@@ -23,11 +23,13 @@ public class PlayerLoginListener implements Listener {
 
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onLogin(PlayerLoginEvent e) throws SQLException {
-
+		
 		for (TableType table : TableType.values()) {
 
 			if (table.isGeneralTable()) {
+				
 				table.getInserter().insert(e.getPlayer().getName());
+				
 			}
 
 		}

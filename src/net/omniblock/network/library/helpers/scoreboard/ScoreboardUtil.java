@@ -81,7 +81,7 @@ public class ScoreboardUtil {
 
 	}
 
-	public static boolean unrankedSidebarDisplay(Player p, String[] elements) {
+	public static boolean unrankedSidebarDisplay(Player p, String[] elements, boolean health) {
 		elements = cutUnranked(elements);
 
 		try {
@@ -91,9 +91,11 @@ public class ScoreboardUtil {
 			}
 
 			if (p.getScoreboard().getObjective(p.getUniqueId().toString().substring(0, 16)) == null) {
+				
 				p.getScoreboard().registerNewObjective(p.getUniqueId().toString().substring(0, 16), "dummy");
 				p.getScoreboard().getObjective(p.getUniqueId().toString().substring(0, 16))
 						.setDisplaySlot(DisplaySlot.SIDEBAR);
+				
 			}
 
 			p.getScoreboard().getObjective(DisplaySlot.SIDEBAR).setDisplayName(elements[0]);
@@ -134,9 +136,9 @@ public class ScoreboardUtil {
 		}
 	}
 
-	public static boolean unrankedSidebarDisplay(Collection<Player> players, String[] elements) {
+	public static boolean unrankedSidebarDisplay(Collection<Player> players, String[] elements, boolean health) {
 		for (Player player : players)
-			if (!unrankedSidebarDisplay(player, elements))
+			if (!unrankedSidebarDisplay(player, elements, health))
 				return false;
 
 		return true;

@@ -46,7 +46,7 @@ public class Scan {
 			Chunk c = arrayOfChunk.get(i);
 
 			ChunkSnapshot csnapshot = c.getChunkSnapshot(false, false, false);
-
+			
 			int blockX = csnapshot.getX() << 4;
 			int blockZ = csnapshot.getZ() << 4;
 

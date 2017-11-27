@@ -417,6 +417,7 @@ public class ItemBuilder {
 	 * @param unbreakable
 	 *            If it should be unbreakable
 	 */
+	@SuppressWarnings("deprecation")
 	public ItemBuilder unbreakable(boolean unbreakable) {
 		meta.spigot().setUnbreakable(unbreakable);
 		return this;
@@ -429,6 +430,7 @@ public class ItemBuilder {
 		return this;
 	}
 
+	@SuppressWarnings("deprecation")
 	public ItemBuilder setSkullOwner(String owner) {
 
 		try {

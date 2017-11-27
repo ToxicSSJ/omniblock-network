@@ -13,6 +13,7 @@ import net.omniblock.network.handlers.base.bases.type.BoosterBase;
 import net.omniblock.network.handlers.packets.PacketsTools;
 import net.omniblock.network.library.helpers.ItemBuilder;
 import net.omniblock.network.library.helpers.RandomFirework;
+import net.omniblock.network.library.helpers.TextureType;
 import net.omniblock.network.library.helpers.inventory.InventoryBuilder;
 import net.omniblock.network.library.helpers.inventory.InventoryBuilder.Action;
 import net.omniblock.network.library.helpers.inventory.InventoryBuilder.RowsIntegers;
@@ -26,6 +27,7 @@ import net.omniblock.packets.network.Packets;
 import net.omniblock.packets.network.structure.data.PacketSocketData;
 import net.omniblock.packets.network.structure.data.PacketStructure;
 import net.omniblock.packets.network.structure.data.PacketStructure.DataType;
+import net.omniblock.packets.network.structure.packet.PlayerSendTexturepackPacket;
 import net.omniblock.packets.network.structure.packet.PlayerSendToNamedServerPacket;
 import net.omniblock.packets.network.structure.packet.ResposeGamePartyInfoPacket;
 import net.omniblock.packets.network.structure.packet.ResposePlayerBanPacket;
@@ -38,6 +40,38 @@ public class PlayerReaders {
 
 	public static void start() {
 
+		System.out.println("registering... ");
+		
+		/*
+		 * 
+		 * Con este reader se puede elegir el texturepack de un jugador en base
+		 * a la información enviada.
+		 * 
+		 */
+		Packets.READER.registerReader(new PacketReader<PlayerSendTexturepackPacket>(){
+
+			@Override
+			public void readPacket(PacketSocketData<PlayerSendTexturepackPacket> packetsocketdata) {
+				
+				System.out.println("XDDDDDDDD APPLYING");
+				
+				PacketStructure structure = packetsocketdata.getStructure();
+				
+				String playername = structure.get(DataType.STRINGS, "playername");
+				String texturehash = structure.get(DataType.STRINGS, "texturehash");
+				
+				TextureType.getFromName(texturehash).sendPack(Bukkit.getPlayer(playername));
+				return;
+				
+			}
+
+			@Override
+			public Class<PlayerSendTexturepackPacket> getAttachedPacketClass() {
+				return PlayerSendTexturepackPacket.class;
+			}
+			
+		});
+		
 		/*
 		 * 
 		 * Este reader es el que se encarga de ejecutar el metodo de

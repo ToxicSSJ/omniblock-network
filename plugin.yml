@@ -23,3 +23,6 @@ commands:
    banco:
       aliases: [banco, bank, dinero]
       description: Maneja todos los comandos del tipo Banco/Dinero de OmniNetwork.
+   rango:
+      aliases: [rango, rank]
+      description: Comando de administración de Rangos de OmniNetwork.

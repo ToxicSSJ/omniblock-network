@@ -7,6 +7,9 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,17 +20,67 @@ import org.bukkit.permissions.PermissionAttachment;
 import net.omniblock.network.OmniNetwork;
 import net.omniblock.network.handlers.Handlers;
 import net.omniblock.network.handlers.base.bases.type.RankBase;
+import net.omniblock.network.handlers.base.sql.util.Resolver;
+import net.omniblock.network.handlers.network.NetworkManager;
 import net.omniblock.network.library.addons.xmladdon.XMLReader;
 import net.omniblock.network.library.addons.xmladdon.XMLType;
+import net.omniblock.network.library.utils.TextUtil;
 import net.omniblock.network.systems.rank.type.RankType;
 
-public class RankManager implements Listener {
+public class RankManager implements Listener, CommandExecutor {
 
 	public static Map<Player, PermissionAttachment> attachments = new HashMap<Player, PermissionAttachment>();
 
 	public static Map<RankType, Set<String>> permissions = new HashMap<RankType, Set<String>>();
 	public static Map<RankType, RankType> carriers = new HashMap<RankType, RankType>();
 
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+
+		if (!(sender instanceof Player))
+			return false;
+		if (!(sender.hasPermission("omniblock.network.rank"))) {
+			sender.sendMessage(NetworkManager.NOT_RECOGNIZED_COMMAND);
+			return false;
+		}
+		
+		if (cmd.getName().equalsIgnoreCase("rango") || cmd.getName().equalsIgnoreCase("rank")) {
+
+			if (args.length >= 3) {
+
+				if(!Resolver.hasLastName(args[1])) {
+
+					sender.sendMessage(TextUtil.format("&cEl jugador " + args[1] + " no existe!"));
+					return true;
+
+				}
+
+				if(!args[0].equalsIgnoreCase("definir") || args[0].equalsIgnoreCase("set")) {
+					
+					sender.sendMessage(TextUtil.format("&cEl argumento " + args[0] + " no existe!"));
+					return true;
+					
+				}
+				
+				if(!RankType.exists(args[2])) {
+					
+					sender.sendMessage(TextUtil.format("&cEl rango " + args[2] + " no existe!"));
+					return true;
+					
+				}
+				
+				RankBase.setRank(args[1], RankType.getByName(args[2]));
+				sender.sendMessage(TextUtil.format("&aSe le ha definido el rango &7" + args[2] + " &aal jugador &7" + args[1] + "&a!"));
+				return true;
+			}
+
+			sender.sendMessage(TextUtil.format("&cFaltan más argumentos!"));
+			return true;
+		}
+		
+		return false;
+	}
+	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 

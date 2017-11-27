@@ -1,9 +1,5 @@
 package net.omniblock.network.library.helpers.effectlib;
 
-import net.omniblock.network.OmniNetwork;
-import net.omniblock.network.library.helpers.effectlib.entity.EntityManager;
-import net.omniblock.network.library.helpers.effectlib.listener.ItemListener;
-
 import java.util.List;
 
 /*! \mainpage EffectLib Plugin API
@@ -118,40 +114,26 @@ import java.util.List;
 *           return (EffectLib)effectLib;
 *       }
 * </pre>
-*
+* 
 */
 public final class EffectLib {
 
-	private static EffectLib instance;
-	private static EntityManager entityManager;
+    private static EffectLib instance;
 
-	public EffectLib() {
-		super();
-		instance = this;
-	}
+    public EffectLib() {
+        instance = this;
+    }
 
-	public static EffectLib instance() {
-		return instance;
-	}
+    public static void startEffectLib() {
+        EffectManager.initialize();
+    }
 
-	public static void startEffectLib() {
-		entityManager = new EntityManager(instance);
-		EffectManager.initialize();
+    public List<EffectManager> getEffectManagers() {
+        return EffectManager.getManagers();
+    }
 
-		loadListeners();
-	}
-
-	private static void loadListeners() {
-		OmniNetwork.getInstance().getServer().getPluginManager().registerEvents(new ItemListener(),
-				OmniNetwork.getInstance());
-	}
-
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	public List<EffectManager> getEffectManagers() {
-		return EffectManager.getManagers();
-	}
+    public static EffectLib instance() {
+        return instance;
+    }
 
 }

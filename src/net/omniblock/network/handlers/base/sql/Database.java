@@ -17,7 +17,9 @@ import java.sql.Statement;
 
 import org.bukkit.Bukkit;
 
+import net.omniblock.network.OmniNetwork;
 import net.omniblock.network.handlers.Handlers;
+import net.omniblock.network.handlers.base.sql.join.PlayerLoginListener;
 import net.omniblock.network.handlers.base.sql.type.TableType;
 import net.omniblock.network.library.addons.configaddon.Factory.ConfigType;
 import net.omniblock.network.library.utils.TextUtil;
@@ -34,6 +36,8 @@ public class Database {
 
 		Bukkit.getConsoleSender().sendMessage(TextUtil.format("&8------------------[MySQL]--------------------"));
 
+		OmniNetwork.getInstance().getServer().getPluginManager().registerEvents(new PlayerLoginListener(), OmniNetwork.getInstance());
+		
 		String host = ConfigType.DATABASE.getConfig().getString("database.mysql.host");
 		String port = ConfigType.DATABASE.getConfig().getString("database.mysql.port");
 		String user = ConfigType.DATABASE.getConfig().getString("database.mysql.user");

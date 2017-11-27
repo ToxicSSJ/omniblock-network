@@ -1,6 +1,6 @@
 package net.omniblock.network.handlers.packets.readers;
 
-import net.omniblock.network.handlers.games.NetworkSaver;
+import net.omniblock.network.handlers.packets.PacketsTools;
 import net.omniblock.packets.network.Packets;
 import net.omniblock.packets.network.structure.data.PacketSocketData;
 import net.omniblock.packets.network.structure.data.PacketStructure;
@@ -25,47 +25,7 @@ public class ServerReaders {
 
 				PacketStructure structure = packetsocketdata.getStructure();
 
-				String data = structure.get(DataType.STRINGS, "boostedgames");
-
-				if (data.length() > 0) {
-
-					if (data.contains(",")) {
-
-						String[] master = data.split(",");
-
-						for (String k : master) {
-
-							if (k.contains("#")) {
-
-								String[] container = k.split("#");
-
-								String gametype = container[0];
-								String name = container[1];
-
-								NetworkSaver.ACTIVED_BOOSTERS.put(gametype, name);
-								continue;
-
-							}
-
-						}
-
-						return;
-
-					}
-
-					if (data.contains("#")) {
-
-						String[] container = data.split("#");
-
-						String gametype = container[0];
-						String name = container[1];
-
-						NetworkSaver.ACTIVED_BOOSTERS.put(gametype, name);
-						return;
-
-					}
-
-				}
+				PacketsTools.setBoosters(structure.get(DataType.STRINGS, "boostedgames"));
 
 			}
 

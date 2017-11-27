@@ -3,8 +3,6 @@ package net.omniblock.network.library.addons.resourceaddon;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import net.omniblock.network.library.addons.resourceaddon.api.RPApiPlugin;
-import net.omniblock.network.library.addons.resourceaddon.api.ResourcePackAPI;
 import net.omniblock.network.library.addons.resourceaddon.type.ResourceType;
 import net.omniblock.packets.network.Packets;
 import net.omniblock.packets.network.structure.data.PacketSocketData;
@@ -18,10 +16,6 @@ import net.omniblock.packets.network.tool.object.PacketResponder;
 
 public class ResourceHandler {
 
-	public static void setup() {
-		RPApiPlugin.setup();
-	}
-
 	/**
 	 * 
 	 * - Este metodo no debe usarse debido a que es el metodo manual de
@@ -34,7 +28,7 @@ public class ResourceHandler {
 	 * @deprecated
 	 */
 	public static void setResourcePack(Player player, ResourceType type) {
-		ResourcePackAPI.setResourcepack(player, type.getPack().getUrl(), type.getPack().getHash());
+		
 		return;
 	}
 
@@ -76,7 +70,9 @@ public class ResourceHandler {
 
 					@Override
 					public void readRespose(PacketSocketData<ResposeTexturepackPacket> packetsocketdata) {
-
+						
+						System.out.println("xdd222");
+						
 						PacketStructure structure = packetsocketdata.getStructure();
 
 						String resourcename = structure.get(DataType.STRINGS, "resourcetype");

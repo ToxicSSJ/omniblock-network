@@ -65,6 +65,7 @@ public class BanManager implements CommandExecutor, Listener {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 

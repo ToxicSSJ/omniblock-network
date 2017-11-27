@@ -10,77 +10,100 @@ import net.omniblock.network.library.helpers.effectlib.util.ParticleEffect;
 
 public class LineEffect extends Effect {
 
-	/**
-	 * ParticleType of spawned particle
-	 */
-	public ParticleEffect particle = ParticleEffect.FLAME;
+    /**
+     * ParticleType of spawned particle
+     */
+    public ParticleEffect particle = ParticleEffect.FLAME;
 
-	/**
-	 * Should it do a zig zag?
-	 */
-	public boolean isZigZag = false;
+    /**
+     * Should it do a zig zag?
+     */
+    public boolean isZigZag = false;
 
-	/**
-	 * Number of zig zags in the line
-	 */
-	public int zigZags = 10;
+    /**
+     * Number of zig zags in the line
+     */
+    public int zigZags = 10;
 
-	/**
-	 * Particles per arc
-	 */
-	public int particles = 100;
+    /**
+     * Direction of zig-zags
+     */
+    public Vector zigZagOffset = new Vector(0,0.1,0);
 
-	/**
-	 * Internal boolean
-	 */
-	protected boolean zag = false;
+    /**
+     * Particles per arc
+     */
+    public int particles = 100;
 
-	/**
-	 * Internal counter
-	 */
-	protected int step = 0;
+    /**
+     * Length of arc
+     * A non-zero value here will use a length instead of the target endpoint
+     */
+    public double length = 0;
 
-	public LineEffect(EffectManager effectManager) {
-		super(effectManager);
-		type = EffectType.INSTANT;
-		period = 5;
-		iterations = 200;
-	}
+    /**
+     * Internal boolean
+     */
+    protected boolean zag = false;
 
-	@Override
-	public void onRun() {
-		Location location = getLocation();
-		Location target = getTarget();
-		double amount = particles / zigZags;
-		if (target == null) {
-			cancel();
-			return;
-		}
-		Vector link = target.toVector().subtract(location.toVector());
-		float length = (float) link.length();
-		link.normalize();
+    /**
+     * Internal counter
+     */
+    protected int step = 0;
 
-		float ratio = length / particles;
-		Vector v = link.multiply(ratio);
-		Location loc = location.clone().subtract(v);
-		for (int i = 0; i < particles; i++) {
-			if (isZigZag) {
-				if (zag)
-					loc.add(0, .1, 0);
-				else
-					loc.subtract(0, .1, 0);
-			}
-			if (step >= amount) {
-				if (zag)
-					zag = false;
-				else
-					zag = true;
-				step = 0;
-			}
-			step++;
-			loc.add(v);
-			display(particle, loc);
-		}
-	}
+    public LineEffect(EffectManager effectManager) {
+        super(effectManager);
+        type = EffectType.REPEATING;
+        period = 1;
+        iterations = 1;
+    }
+
+    @Override
+    public void reset() {
+        this.step = 0;
+    }
+
+    @Override
+    public void onRun() {
+        Location location = getLocation();
+        Location target = null;
+        if (length > 0) {
+            target = location.clone().add(location.getDirection().normalize().multiply(length));
+        } else {
+            target = getTarget();
+        }
+        double amount = particles / zigZags;
+        if (target == null) {
+            cancel();
+            return;
+        }
+        Vector link = target.toVector().subtract(location.toVector());
+        float length = (float) link.length();
+        link.normalize();
+
+        float ratio = length / particles;
+        Vector v = link.multiply(ratio);
+        Location loc = location.clone().subtract(v);
+        for (int i = 0; i < particles; i++) {
+            if (isZigZag) {
+                if (zag) {
+                    loc.add(zigZagOffset);
+                } else {
+                    loc.subtract(zigZagOffset);
+                }
+            }
+            if (step >= amount) {
+                if (zag) {
+                    zag = false;
+                } else {
+                    zag = true;
+                }
+                step = 0;
+            }
+            step++;
+            loc.add(v);
+            display(particle, loc);
+        }
+    }
 
 }

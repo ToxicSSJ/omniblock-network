@@ -10,9 +10,11 @@ import java.util.regex.Pattern;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 
-import net.minecraft.server.v1_8_R3.RegionFile;
-import net.minecraft.server.v1_8_R3.RegionFileCache;
+import net.minecraft.server.v1_12_R1.RegionFile;
+import net.minecraft.server.v1_12_R1.RegionFileCache;
+import net.minecraft.server.v1_12_R1.WorldServer;
 
 public class MCAUtils {
 
@@ -44,10 +46,13 @@ public class MCAUtils {
 
 	}
 
+	@SuppressWarnings("unused")
 	private static void chunkLoader(World world, boolean save) {
 
 		final Pattern regionPattern = Pattern.compile("r\\.([0-9-]+)\\.([0-9-]+)\\.mca");
 
+		WorldServer worldserver = ((CraftWorld) world).getHandle();
+		
 		File worldDir = new File(Bukkit.getWorldContainer(), world.getName());
 		File regionDir = new File(worldDir, "region");
 
@@ -80,17 +85,15 @@ public class MCAUtils {
 
 			for (int cx = 0; cx < 32; cx++) {
 				for (int cz = 0; cz < 32; cz++) {
-
-					if (save) {
-						if (regionfile.chunkExists((mcaX << 5) + cx, (mcaZ << 5) + cz)) {
-
+					
+					if(worldserver.getChunkProviderServer().getChunkAt((mcaX << 5) + cx, (mcaZ << 5) + cz) != null) {
+						
+						if(!worldserver.getChunkProviderServer().getChunkAt((mcaX << 5) + cx, (mcaZ << 5) + cz).isEmpty()) {
+							
 							world.loadChunk((mcaX << 5) + cx, (mcaZ << 5) + cz, false);
-
+							
 						}
-					} else {
-
-						world.loadChunk((mcaX << 5) + cx, (mcaZ << 5) + cz, false);
-
+						
 					}
 
 				}

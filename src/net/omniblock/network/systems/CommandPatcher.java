@@ -7,6 +7,7 @@ import net.omniblock.network.library.utils.TextUtil;
 import net.omniblock.network.systems.ban.BanManager;
 import net.omniblock.network.systems.bank.BankManager;
 import net.omniblock.network.systems.kick.KickManager;
+import net.omniblock.network.systems.rank.RankManager;
 
 public class CommandPatcher {
 
@@ -29,6 +30,11 @@ public class CommandPatcher {
 		OmniNetwork.getInstance().getCommand("banco").setExecutor(BANK_EXECUTOR);
 		OmniNetwork.getInstance().getCommand("dinero").setExecutor(BANK_EXECUTOR);
 
+		CommandExecutor RANK_EXECUTOR = new RankManager();
+
+		OmniNetwork.getInstance().getCommand("rango").setExecutor(RANK_EXECUTOR);
+		OmniNetwork.getInstance().getCommand("rank").setExecutor(RANK_EXECUTOR);
+		
 	}
 
 }

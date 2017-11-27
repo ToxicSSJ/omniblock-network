@@ -46,7 +46,7 @@ public class OtherReaders {
 						if (Bukkit.getOnlinePlayers().size() <= 0) {
 
 							cancel();
-							Bukkit.getServer().reload();
+							Bukkit.getServer().shutdown();
 							return;
 
 						} else {
