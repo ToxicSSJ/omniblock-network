@@ -86,13 +86,12 @@ public class MCAUtils {
 			for (int cx = 0; cx < 32; cx++) {
 				for (int cz = 0; cz < 32; cz++) {
 					
-					if(worldserver.getChunkProviderServer().getChunkAt((mcaX << 5) + cx, (mcaZ << 5) + cz) != null) {
+					net.minecraft.server.v1_12_R1.Chunk chunk = worldserver.getChunkProviderServer().getChunkAt((mcaX << 5) + cx, (mcaZ << 5) + cz); // worldserver.getChunkProviderServer().getChunkAt((mcaX << 5) + cx, (mcaZ << 5) + cz);
+					
+					if(chunk != null) {
 						
-						if(!worldserver.getChunkProviderServer().getChunkAt((mcaX << 5) + cx, (mcaZ << 5) + cz).isEmpty()) {
-							
-							world.loadChunk((mcaX << 5) + cx, (mcaZ << 5) + cz, false);
-							
-						}
+						world.loadChunk((mcaX << 5) + cx, (mcaZ << 5) + cz, false);
+						continue;
 						
 					}
 

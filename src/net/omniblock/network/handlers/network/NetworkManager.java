@@ -108,7 +108,7 @@ public class NetworkManager {
 							.setReceiver(PacketSenderType.OMNICORE));
 
 				}
-			}.runTaskLater(OmniNetwork.getInstance(), 20 * 10);
+			}.runTaskLater(OmniNetwork.getInstance(), 20 * 2);
 
 		}
 
