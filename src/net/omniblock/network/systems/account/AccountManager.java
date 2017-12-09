@@ -232,13 +232,13 @@ public class AccountManager {
 
 		ib.addItem(new ItemBuilder(Material.CHEST).amount(1).name(TextUtil.format("&aGadgets &c&l(Proximamente)"))
 				.lore("").lore(TextUtil.format("&9&m-&r &7Disfruta eligiendo y luciendo diferentes"))
-				.lore(TextUtil.format("&7gadgets, animaciones, cosmeticos para tu estadia"))
+				.lore(TextUtil.format("&7gadgets, animaciones y cosméticos para tu estadía"))
 				.lore(TextUtil.format("&7durante las lobbies y el tiempo de carga de una"))
 				.lore(TextUtil.format("&7partida en cualquiera de nuestras modalidades.")).lore("").build(), 10);
 
 		ib.addItem(new ItemBuilder(Material.ENDER_PORTAL_FRAME).amount(1).name(TextUtil.format("&6Boosters")).lore("")
-				.lore(TextUtil.format("&9&m-&r &7Revisa los boosters que tienes disponibles"))
-				.lore(TextUtil.format("&7y usalos para adquirir omnicoins mucho más rapido,"))
+				.lore(TextUtil.format("&9&m-&r &7¡Revisa los boosters que tienes disponibles"))
+				.lore(TextUtil.format("&7y usalos para adquirir omnicoins mucho más rápido,"))
 				.lore(TextUtil.format("&7Además existen dos tipos de Boosters en Omniblock"))
 				.lore(TextUtil.format("&7uno de ellos es personal y el otro tipo es global!")).lore(TextUtil.format(""))
 				.lore(TextUtil.format("&e(!) &fSi necesitas información o comprar un booster"))
@@ -255,17 +255,17 @@ public class AccountManager {
 
 				});
 
-		ib.addItem(new ItemBuilder(Material.FIREBALL).amount(1).name(TextUtil.format("&dParticulas &c&l(Proximamente)"))
-				.lore("").lore(TextUtil.format("&9&m-&r &7Encuentra tu particula preferida y disfruta"))
-				.lore(TextUtil.format("&7teniendola activada durante los lobbies de toda la"))
+		ib.addItem(new ItemBuilder(Material.FIREBALL).amount(1).name(TextUtil.format("&dpartículas &c&l(Proximamente)"))
+				.lore("").lore(TextUtil.format("&9&m-&r &7Encuentra tu partículas preferida y disfruta"))
+				.lore(TextUtil.format("&7¡teniendola activada durante los lobbies de toda la"))
 				.lore(TextUtil.format("&7network!")).lore("")
 				.lore(TextUtil.format("&e(!) &fPara obtener particulas compra un rango"))
 				.lore(TextUtil.format("&fvisitando nuestra tienda: &btienda.omniblock.net")).lore("").build(), 16);
 
 		ib.addItem(
 				new ItemBuilder(Material.SADDLE).amount(1).name(TextUtil.format("&2Omni-Mascotas &c&l(Proximamente)"))
-						.lore("").lore(TextUtil.format("&9&m-&r &7Mascotas unicas con acciones muy interesantes!"))
-						.lore(TextUtil.format("&7Elige tu mascota y te seguirá a todas partes incluso"))
+						.lore("").lore(TextUtil.format("&9&m-&r &7Mascotas únicas con acciones muy interesantes!"))
+						.lore(TextUtil.format("&7¡Elige tu mascota y te seguirá a todas partes incluso"))
 						.lore(TextUtil.format("&7en todas las modalidades de la network!")).lore("")
 						.lore(TextUtil.format("&e(!) &fPara obtener mascotas compra un rango"))
 						.lore(TextUtil.format("&fvisitando nuestra tienda: &btienda.omniblock.net")).lore("").build(),
@@ -284,7 +284,7 @@ public class AccountManager {
 				.lore(TextUtil.format("&7se les sumará el tiempo total del rango que has activado"))
 				.lore(TextUtil.format("&7para que no expiren durante el periodo de tu rango"))
 				.lore(TextUtil.format("&7activado.")).lore("")
-				.lore(TextUtil.format("&7Es decir, si no lo usas en dicho lapso de tiempo el"))
+				.lore(TextUtil.format("&7¡Es decir, si no lo usas en dicho lapso de tiempo el"))
 				.lore(TextUtil.format("&7rango se consumirá y desaparecerá de tu botín, Debes"))
 				.lore(TextUtil.format("&7estar muy pendiente y usarlo antes de que expire!")).lore("").build(), 31,
 				new Action() {
@@ -304,11 +304,11 @@ public class AccountManager {
 				.lore(TextUtil.format("&9&m-&r &7Revisa los items que te han regalado los"))
 				.lore(TextUtil.format("&7demás jugadores. Si aceptas estos regalos, serán"))
 				.lore(TextUtil.format("&7enviados directamente al apartado del botín donde"))
-				.lore(TextUtil.format("&7pertenecén para que luego tu puedas utilizarlos.")).lore("").build(), 34);
+				.lore(TextUtil.format("&7pertenecen para que luego tu puedas utilizarlos.")).lore("").build(), 34);
 
 		ib.addItem(new ItemBuilder(Material.ANVIL).amount(1).name(TextUtil.format("&7Fabricador &c&l(Proximamente)"))
 				.lore("").lore(TextUtil.format("&9&m-&r &7Crea particulas, gadgets o rangos que podrás"))
-				.lore(TextUtil.format("&7ir fabricando conforme vayas añadiendoles puntos de"))
+				.lore(TextUtil.format("&7ir fabricando conforme vayas añadiéndoles puntos de"))
 				.lore(TextUtil.format("&7torneo.")).lore("")
 				.lore(TextUtil.format("&f&lNota: &7Para obtener una mayor información acerca de"))
 				.lore(TextUtil.format("&7los puntos de torneo visita: &btorneos.omniblock.net")).lore("").build(), 49);
