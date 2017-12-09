@@ -118,7 +118,7 @@ public class AuthBase {
 				.format("&8&lC&8uentas &a&l» &aHas sido logeado automaticamente porque eres un usuario premium!"));
 
 		Packets.STREAMER.streamPacket(new PlayerSendToServerPacket().setPlayername(player.getName())
-				.setServertype(ServerType.SKYWARS_LOBBY_SERVER).setParty(false).build()
+				.setServertype(ServerType.MAIN_LOBBY_SERVER).setParty(false).build()
 				.setReceiver(PacketSenderType.OMNICORE));
 
 		Packets.STREAMER.streamPacket(new PlayerLoginSucessPacket().setPlayername(player.getName())

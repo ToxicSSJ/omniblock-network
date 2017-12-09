@@ -25,8 +25,10 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.material.MaterialData;
+import org.bukkit.potion.PotionEffect;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -430,6 +432,22 @@ public class ItemBuilder {
 		return this;
 	}
 
+	public ItemBuilder setPotionEffect(PotionEffect effect) {
+		
+		try {
+
+			PotionMeta im = (PotionMeta) item.getItemMeta();
+
+			im.addCustomEffect(effect, true);
+			item.setItemMeta(im);
+
+		} catch (ClassCastException expected) {
+		}
+
+		return this;
+		
+	}
+	
 	@SuppressWarnings("deprecation")
 	public ItemBuilder setSkullOwner(String owner) {
 
