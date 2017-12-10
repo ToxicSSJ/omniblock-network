@@ -14,6 +14,30 @@ import net.omniblock.network.handlers.base.sql.util.VariableUtils;
 
 public class BankBase {
 
+	public static final int baseXP = 250;
+	public static final float exponentXP = 1.02f;
+	
+	public static int getLevel(Player player) {
+		return calculateLevel(BankBase.getExp(player));
+	}
+	
+	public static int getLevel(String player) {
+		return calculateLevel(BankBase.getExp(player));
+	}
+	
+	private static int expForNextLevel(int level) {
+        return (int)(baseXP + (baseXP * Math.pow(level, exponentXP)));
+    }
+
+    private static int calculateLevel(double experience) {
+        int level = 0;
+        double maxXp = expForNextLevel(0);
+        do {
+            maxXp += expForNextLevel(++level);
+        } while (maxXp < experience);
+        return level;
+    }
+	
 	public static int getMoney(Player player) {
 		return getMoney(player.getName());
 	}
