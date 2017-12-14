@@ -39,8 +39,6 @@ public class InformationCenterPatcher {
 			
 		}
 		
-		
-		
 		return "none";
 		
 	}

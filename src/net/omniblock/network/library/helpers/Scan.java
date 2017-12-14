@@ -127,8 +127,6 @@ public class Scan {
 			WORLD_CHUNKS.put(world.getName(), arrayOfChunk);
 
 		}
-
-		System.out.println("arrayofChunk size -> " + arrayOfChunk.size());
 		
 		O : for (int i = 0; i < arrayOfChunk.size(); i++) {
 			
@@ -145,17 +143,9 @@ public class Scan {
 						
 						int typeId = csnapshot.getBlockTypeId(x, y, z);
 						
-						if(typeId != 0) {
-							
-							System.out.println("typeId -> " + typeId);
-							
-						}
-						
 						D : for (Material material : materials) {
 							
 							if(typeId == material.getId()) {
-								
-								System.out.println("Se ha encontrado un bloque de " + material.name() + " en este escaneo.");
 								
 								List<Location> currentList = returnMap.get(material);
 
@@ -210,8 +200,6 @@ public class Scan {
 			WORLD_CHUNKS.put(world.getName(), arrayOfChunk);
 
 		}
-
-		System.out.println("Chunks founded -> " + arrayOfChunk.size());
 		
 		for(Chunk chunk : arrayOfChunk) {
 			

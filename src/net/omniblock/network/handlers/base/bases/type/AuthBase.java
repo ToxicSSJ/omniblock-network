@@ -3,7 +3,9 @@ package net.omniblock.network.handlers.base.bases.type;
 import java.sql.SQLException;
 
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import net.omniblock.network.OmniNetwork;
 import net.omniblock.network.handlers.base.sql.make.MakeSQLQuery;
 import net.omniblock.network.handlers.base.sql.make.MakeSQLUpdate;
 import net.omniblock.network.handlers.base.sql.make.MakeSQLUpdate.TableOperation;
@@ -103,19 +105,16 @@ public class AuthBase {
 
 	public static void evaluate(Player player) {
 
-		player.sendMessage(TextUtil.format("&8&lC&8uentas &6&l» &fSe está comprobando el estado de tu cuenta..."));
-
 		if (Resolver.getOnlineUUIDByName(player.getName()) == null) {
 
+			player.sendMessage(TextUtil.format("&8&lC&8uentas &6&l» &fSe está comprobando el estado de tu cuenta..."));
+			
 			Packets.STREAMER.streamPacket(new PlayerLoginEvaluatePacket().setPlayername(player.getName())
 					.useIPLogin(AccountManager.hasTag(AccountTagType.IP_LOGIN, AccountBase.getTags(player))).build()
 					.setReceiver(PacketSenderType.OMNICORD));
 			return;
 
 		}
-
-		player.sendMessage(TextUtil
-				.format("&8&lC&8uentas &a&l» &aHas sido logeado automaticamente porque eres un usuario premium!"));
 
 		Packets.STREAMER.streamPacket(new PlayerSendToServerPacket().setPlayername(player.getName())
 				.setServertype(ServerType.MAIN_LOBBY_SERVER).setParty(false).build()
@@ -124,6 +123,19 @@ public class AuthBase {
 		Packets.STREAMER.streamPacket(new PlayerLoginSucessPacket().setPlayername(player.getName())
 				.useIPLogin(AccountManager.hasTag(AccountTagType.IP_LOGIN, AccountBase.getTags(player))).build()
 				.setReceiver(PacketSenderType.OMNICORD));
+		
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				
+				if(player != null)
+					if(player.isOnline())
+						player.kickPlayer(TextUtil.format("&c&lNo hay servidores disponibles, Intentalo nuevamente."));
+				
+			}
+			
+		}.runTaskLater(OmniNetwork.getInstance(), 20 * 10);
 		return;
 
 	}

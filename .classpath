@@ -4,7 +4,7 @@
 	<classpathentry kind="lib" path="C:/Gitlab/cglib-2.2.0.jar"/>
 	<classpathentry kind="lib" path="C:/Gitlab/jsch-0.1.54.jar" sourcepath="/tmp/decompiler/source/jsch-0.1.54-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_144"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/OmniPackets"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Omniblock-Packets"/>
 	<classpathentry kind="lib" path="C:/Gitlab/SPIGOT_1_12_2.jar"/>
 	<classpathentry kind="lib" path="C:/Gitlab/ProtocolLib.jar"/>
 	<classpathentry kind="output" path="bin"/>
