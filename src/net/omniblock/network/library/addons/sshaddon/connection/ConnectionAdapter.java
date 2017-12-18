@@ -30,8 +30,12 @@ public class ConnectionAdapter {
 		String SFTPWORKINGDIR = ConfigType.SSH.getConfig().getString("ssh-server.working-cd");
 
 		try {
-			Handlers.LOGGER.sendInfo("&b--------------------- &7[SSH] &b---------------------", "SSH HOST: " + SFTPHOST,
-					"SSH PORT: " + SFTPPORT, "SSH USER: " + SFTPUSER, "SSH PASS: " + SFTPPASS,
+			Handlers.LOGGER.sendInfo(
+					"&b--------------------- &7[SSH] &b---------------------",
+					"SSH HOST: " + SFTPHOST,
+					"SSH PORT: " + SFTPPORT,
+					"SSH USER: " + SFTPUSER,
+					"SSH PASS: " + SFTPPASS.replaceAll(".", "*"),
 					"&b-------------------------------------------------");
 			session = ssh.getSession(SFTPUSER, SFTPHOST, SFTPPORT);
 			session.setPassword(SFTPPASS);

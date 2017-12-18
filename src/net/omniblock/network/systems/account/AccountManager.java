@@ -29,7 +29,6 @@ import net.omniblock.network.systems.account.items.NetworkBoosterType;
 import net.omniblock.network.systems.rank.type.RankType;
 import net.omniblock.packets.network.Packets;
 import net.omniblock.packets.network.structure.data.PacketSocketData;
-import net.omniblock.packets.network.structure.data.PacketStructure.DataType;
 import net.omniblock.packets.network.structure.packet.RequestPlayerStartNetworkBoosterPacket;
 import net.omniblock.packets.network.structure.packet.ResposePlayerNetworkBoosterPacket;
 import net.omniblock.packets.network.structure.type.PacketSenderType;
@@ -255,7 +254,7 @@ public class AccountManager {
 
 				});
 
-		ib.addItem(new ItemBuilder(Material.FIREBALL).amount(1).name(TextUtil.format("&dpartículas &c&l(Proximamente)"))
+		ib.addItem(new ItemBuilder(Material.FIREBALL).amount(1).name(TextUtil.format("&dPartículas &c&l(Proximamente)"))
 				.lore("").lore(TextUtil.format("&9&m-&r &7Encuentra tu partículas preferida y disfruta"))
 				.lore(TextUtil.format("&7¡teniendola activada durante los lobbies de toda la"))
 				.lore(TextUtil.format("&7network!")).lore("")
@@ -501,7 +500,7 @@ public class AccountManager {
 
 		RankType temporal_membership = RankBase.getTempRank(player.getName());
 
-		if (temporal_membership != null) {
+		if (temporal_membership != null && !rank.isStaff()) {
 
 			Date end = RankBase.getTempRankExpireDate(player.getName());
 
@@ -549,7 +548,7 @@ public class AccountManager {
 				}
 			}.runTaskTimer(OmniNetwork.getInstance(), 0L, 19L);
 
-		} else {
+		} else if(!rank.isStaff()){
 
 			ib.addItem(disabled_membership, 49);
 
@@ -804,7 +803,7 @@ public class AccountManager {
 					Date now = new Date();
 					Date end = BoosterBase.parseExpireDate(expiredate);
 
-					if (now.after(end)) {
+					if (!now.after(end)) {
 
 						BoosterBase.removeEnabledBooster(player, type);
 						ib.addItem(disabled_booster, 49);
@@ -846,8 +845,10 @@ public class AccountManager {
 												+ (minutes > 0 ? minutes + " minutos y " : "") + seconds + " segundos");
 
 								ib.addItem(new ItemBuilder(Material.POTION).durability((short) 8261).amount(1)
-										.hideAtributes().name(TextUtil.format("&7Booster Global &a&lACTIVADO!"))
-										.lore("").lore(TextUtil.format("&8&m-&r &7Tu booster global te dará"))
+										.hideAtributes()
+										.name(TextUtil.format("&7Booster Global &a&lACTIVADO!"))
+										.lore("")
+										.lore(TextUtil.format("&8&m-&r &7Tu booster global te dará"))
 										.lore(TextUtil.format("&7omnicoins y experiencia extra mientras"))
 										.lore(TextUtil.format("&7se encuentre activado y también al"))
 										.lore(TextUtil.format("&7resto de jugadores donde se a activado.")).lore("")
@@ -935,9 +936,9 @@ public class AccountManager {
 			return;
 
 		}
-
-		memberships.stream().forEach(entry -> {
-
+		
+		for(Entry<MembershipType, Date> entry : memberships) {
+			
 			if (entry.getKey() == type) {
 
 				Date end = entry.getValue();
@@ -949,37 +950,30 @@ public class AccountManager {
 					}
 
 					player.closeInventory();
-					player.sendMessage(
-							TextUtil.format(TextUtil.getCenteredMessage("&6&m-----------------------------------")));
+					player.sendMessage(TextUtil.format(TextUtil.getCenteredMessage("&6&m-----------------------------------")));
 					player.sendMessage(TextUtil.format(TextUtil.getCenteredMessage("&7¡Has activado una Membresia!")));
 					player.sendMessage(TextUtil.format(TextUtil.getCenteredMessage("")));
 					player.sendMessage(TextUtil.format(TextUtil.getCenteredMessage("&8Nombre: &b" + type.getName())));
-					player.sendMessage(TextUtil
-							.format(TextUtil.getCenteredMessage("&8Tu nuevo Rango: &b" + type.getRank().getName())));
-					player.sendMessage(TextUtil
-							.format(TextUtil.getCenteredMessage("&8Finalizará: &b" + RankBase.parseExpireDate(end))));
-					player.sendMessage(
-							TextUtil.format(TextUtil.getCenteredMessage("&6&m-----------------------------------")));
+					player.sendMessage(TextUtil.format(TextUtil.getCenteredMessage("&8Tu nuevo Rango: &b" + type.getRank().getName())));
+					player.sendMessage(TextUtil.format(TextUtil.getCenteredMessage("&8Finalizará: &b" + RankBase.parseExpireDate(type.getEndDate()))));
+					player.sendMessage(TextUtil.format(TextUtil.getCenteredMessage("&6&m-----------------------------------")));
 
 					RankBase.removeTemporalMembership(player.getName());
 					RankBase.startTemporalMembership(player.getName(), type);
 					RankBase.addTimeToLoot(player.getName(), type);
-
-					return;
-
-				} else {
-
-					player.closeInventory();
-					player.sendMessage(TextUtil.format(
-							"&8&lM&8embresias &c&l» &4ERROR &7La membresia que intentas usar ya ha " + "expirado!"));
-
+					
 					return;
 
 				}
+				
+				player.closeInventory();
+				player.sendMessage(TextUtil.format("&8&lM&8embresias &c&l» &4ERROR &7La membresia que intentas usar ya ha expirado!"));
 
+				return;
+				
 			}
 
-		});
+		}
 
 	}
 
@@ -1034,40 +1028,7 @@ public class AccountManager {
 						new PacketResponder<ResposePlayerNetworkBoosterPacket>() {
 
 							@Override
-							public void readRespose(
-									PacketSocketData<ResposePlayerNetworkBoosterPacket> packetsocketdata) {
-
-								if (!packetsocketdata.getStructure().<String>get(DataType.STRINGS, "playername")
-										.equalsIgnoreCase(player.getName()))
-									return;
-								if (!player.isOnline()) {
-
-									packetsocketdata.setCancelled(true);
-									return;
-
-								}
-
-								AccountBase.removeTag(player.getName(), key);
-
-								BoosterBase.removeEnabledBooster(player.getName(), AccountBoosterType.NETWORK_BOOSTER);
-								BoosterBase.startBooster(player.getName(), key, AccountBoosterType.NETWORK_BOOSTER,
-										args[0]);
-
-								player.sendMessage(TextUtil
-										.format(TextUtil.getCenteredMessage("&a&m--------------------------------")));
-								player.sendMessage(TextUtil
-										.format(TextUtil.getCenteredMessage("&7¡Has activado un booster global!")));
-								player.sendMessage(TextUtil.format(TextUtil.getCenteredMessage("")));
-								player.sendMessage(TextUtil.format(TextUtil.getCenteredMessage(
-										"&8Nombre: &b" + NetworkBoosterType.fromKey(key).getName())));
-								player.sendMessage(
-										TextUtil.format(TextUtil.getCenteredMessage("&8Modalidad: &b" + args[0])));
-								player.sendMessage(TextUtil.format(TextUtil.getCenteredMessage("&8Finalizará: &b"
-										+ BoosterBase.parseExpireDate(NetworkBoosterType.fromKey(key).getEndDate()))));
-								player.sendMessage(TextUtil
-										.format(TextUtil.getCenteredMessage("&a&m--------------------------------")));
-
-							}
+							public void readRespose(PacketSocketData<ResposePlayerNetworkBoosterPacket> packetsocketdata) {}
 
 						});
 				return;

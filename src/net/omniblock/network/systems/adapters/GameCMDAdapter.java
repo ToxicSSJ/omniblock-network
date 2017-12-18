@@ -13,7 +13,8 @@ import net.omniblock.network.handlers.network.NetworkManager;
 public class GameCMDAdapter implements Listener {
 
 	public static Set<String> ACTIVED_COMMANDS = new HashSet<String>();
-
+	public static Set<String> BLOCKED_COMMANDS = new HashSet<String>();
+	
 	static {
 
 		ACTIVED_COMMANDS.add("ban");
@@ -41,7 +42,7 @@ public class GameCMDAdapter implements Listener {
 
 				String cmd = e.getMessage().replaceFirst("/", "");
 				String[] cmdArguments = cmd.split(" ");
-
+				
 				if (!ACTIVED_COMMANDS.contains(cmdArguments[0])) {
 					e.setCancelled(true);
 					e.getPlayer().sendMessage(NetworkManager.NOT_RECOGNIZED_COMMAND);

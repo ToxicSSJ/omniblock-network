@@ -140,7 +140,7 @@ public class BanManager implements CommandExecutor, Listener {
 						sender.sendMessage(TextUtil
 								.getCenteredMessage(" &7Por consiguiente serás baneado con el codigo &b&lBPBS#1"));
 						sender.sendMessage(TextUtil
-								.getCenteredMessage(" &7que implica que cuando un administrador se enteré de tu "));
+								.getCenteredMessage(" &7que implica que cuando un administrador se entere de tu "));
 						sender.sendMessage(TextUtil.getCenteredMessage(" &7acción, serás expulsado del equipo."));
 						sender.sendMessage(CommandPatcher.BAR);
 						sender.sendMessage(" ");

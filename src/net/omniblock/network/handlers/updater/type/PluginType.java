@@ -10,7 +10,8 @@ package net.omniblock.network.handlers.updater.type;
  */
 public enum PluginType {
 
-	OMNINETWORK(0, "OmniNetwork", "OmniNetwork.jar"), SKYWARS(1, "SkyWars", "SkyWars.jar"),
+	OMNINETWORK(0, "OmniNetwork", "OmniNetwork.jar"), 
+	SKYWARS(1, "SkyWars", "SkyWars.jar"),
 
 	;
 

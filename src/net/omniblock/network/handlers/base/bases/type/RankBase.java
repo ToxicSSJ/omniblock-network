@@ -78,6 +78,7 @@ public class RankBase {
 
 		MakeSQLUpdate msu = new MakeSQLUpdate(TableType.RANK_DATA, TableOperation.UPDATE);
 
+		msu.rowOperation("p_rank", RankType.USER);
 		msu.rowOperation("p_temp_rank", "");
 		msu.rowOperation("p_temp_rank_expire", "");
 		msu.whereOperation("p_id", Resolver.getNetworkIDByName(player));
@@ -101,6 +102,7 @@ public class RankBase {
 
 		MakeSQLUpdate msu = new MakeSQLUpdate(TableType.RANK_DATA, TableOperation.UPDATE);
 
+		msu.rowOperation("p_rank", type.getRank());
 		msu.rowOperation("p_temp_rank", type.getKey());
 		msu.rowOperation("p_temp_rank_expire", parseExpireDate(end));
 		msu.whereOperation("p_id", Resolver.getNetworkIDByName(player));

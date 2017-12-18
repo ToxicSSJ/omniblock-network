@@ -34,13 +34,12 @@ public class NetworkManager {
 	 */
 
 	public static final String NOT_RECOGNIZED_COMMAND = TextUtil.format(
-			" &7Comando desconocido. Si deseas ver la documentación de tus comandos ingresa a &ecomandos.omniblock.net&7 y revisa todos los comandos disponibles!");
+			"&8&lC&8omandos &c» &7Comando desconocido!");
 
 	/**
 	 * Sección de variables que utiliza el NetworkManager para la comunicación
 	 * entre serv - bungeecord - serv.
 	 */
-
 	private static ServerType servertype = ServerType.MAIN_LOBBY_SERVER;
 	private static GamePreset gamepreset = GamePreset.NONE;
 
@@ -50,7 +49,6 @@ public class NetworkManager {
 	/**
 	 * Estos metodos dan inicio y comprobación al estado del canal de datos.
 	 */
-
 	public static void start() {
 
 		Calendar time = Calendar.getInstance();

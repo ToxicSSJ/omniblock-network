@@ -9,11 +9,10 @@ import net.omniblock.network.handlers.base.bases.type.RankBase;
 import net.omniblock.network.systems.rank.type.RankType;
 
 public enum MembershipType {
-	OMNICOINS_NETWORK_MEMBERSHIP_GOLEM_1MONTH("ongolembundle1m", "Rango Golem (1MES)", RankType.GOLEM,
-			31), OMNICOINS_NETWORK_MEMBERSHIP_TITAN_1MONTH("ontitanbundle1m", "Rango Titan (1MES)", RankType.TITAN,
-					31), OMNICOINS_NETWORK_MEMBERSHIP_GOLEM_3MONTHS("ongolembundle3m", "Rango Golem (3MESES)",
-							RankType.GOLEM, 93), OMNICOINS_NETWORK_MEMBERSHIP_TITAN_3MONTHS("ontitanbundle3m",
-									"Rango Titan (3MESES)", RankType.TITAN, 93),
+	OMNICOINS_NETWORK_MEMBERSHIP_GOLEM_1MONTH("ongolembundle1m", "Rango Golem (1MES)", RankType.GOLEM, 31),
+	OMNICOINS_NETWORK_MEMBERSHIP_TITAN_1MONTH("ontitanbundle1m", "Rango Titan (1MES)", RankType.TITAN, 31),
+	OMNICOINS_NETWORK_MEMBERSHIP_GOLEM_3MONTHS("ongolembundle3m", "Rango Golem (3MESES)", RankType.GOLEM, 93),
+	OMNICOINS_NETWORK_MEMBERSHIP_TITAN_3MONTHS("ontitanbundle3m", "Rango Titan (3MESES)", RankType.TITAN, 93),
 
 	;
 
@@ -57,7 +56,8 @@ public enum MembershipType {
 
 	}
 
-	public static Entry<MembershipType, Date> getSeparatedInfo(String row) {
+	public static Entry < MembershipType,
+	Date > getSeparatedInfo(String row) {
 
 		if (row.contains("#")) {
 
@@ -66,8 +66,8 @@ public enum MembershipType {
 			String key = container[0];
 			String expiredate = container[1];
 
-			return new AbstractMap.SimpleEntry<MembershipType, Date>(MembershipType.fromKey(key),
-					RankBase.parseExpireDate(expiredate));
+			return new AbstractMap.SimpleEntry < MembershipType,
+			Date > (MembershipType.fromKey(key), RankBase.parseExpireDate(expiredate));
 
 		}
 
@@ -83,7 +83,7 @@ public enum MembershipType {
 
 	public static MembershipType fromKey(String key) {
 
-		for (MembershipType membership : MembershipType.values()) {
+		for (MembershipType membership: MembershipType.values()) {
 			if (membership.getKey().equalsIgnoreCase(key)) {
 				return membership;
 			}

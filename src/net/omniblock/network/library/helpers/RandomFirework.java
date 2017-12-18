@@ -11,14 +11,20 @@ import org.bukkit.inventory.meta.FireworkMeta;
 
 public class RandomFirework {
 
-	public static void spawnRandomFirework(final Location loc, int quantity) {
+	public static Firework[] spawnRandomFirework(final Location loc, int quantity) {
+		
+		Firework[] fireworks = new Firework[quantity];
+		
 		while (quantity > 0) {
-			spawnRandomFirework(loc);
+			fireworks[quantity] = spawnRandomFirework(loc);
 			quantity--;
 		}
+		
+		return fireworks;
 	}
 
-	public static void spawnRandomFirework(final Location loc) {
+	public static Firework spawnRandomFirework(final Location loc) {
+		
 		final Firework firework = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
 		final FireworkMeta fireworkMeta = firework.getFireworkMeta();
 		final Random random = new Random();
@@ -28,6 +34,8 @@ public class RandomFirework {
 		fireworkMeta.addEffect(effect);
 		fireworkMeta.setPower(random.nextInt(2) + 1);
 		firework.setFireworkMeta(fireworkMeta);
+		
+		return firework;
 	}
 
 	private static Color getColor(final int i) {
