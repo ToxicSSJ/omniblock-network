@@ -39,8 +39,6 @@ import net.omniblock.packets.network.tool.object.PacketReader;
 public class PlayerReaders {
 
 	public static void start() {
-
-		System.out.println("registering... ");
 		
 		/*
 		 * 
@@ -52,8 +50,6 @@ public class PlayerReaders {
 
 			@Override
 			public void readPacket(PacketSocketData<PlayerSendTexturepackPacket> packetsocketdata) {
-				
-				System.out.println("XDDDDDDDD APPLYING");
 				
 				PacketStructure structure = packetsocketdata.getStructure();
 				

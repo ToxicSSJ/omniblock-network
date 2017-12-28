@@ -93,10 +93,12 @@ public class NetworkManager {
 					Handlers.LOGGER.sendInfo(TextUtil
 							.format("&7Se ha detectado un minijuego en este servidor: " + gamepreset.toString()));
 
-					Packets.STREAMER.streamPacket(new GameStructureInfoPacket().setServername(Bukkit.getServerName())
+					Packets.STREAMER.streamPacket(new GameStructureInfoPacket()
+							.setServername(Bukkit.getServerName())
 							.setGamepreset(gamepreset)
 
-							.setMinimiumplayers(2).setMaximiumplayers(12)
+							.setMinimiumplayers(2)
+							.setMaximiumplayers(12)
 
 							.setOnlineplayers(Bukkit.getOnlinePlayers() != null ? Bukkit.getOnlinePlayers().size() : 0)
 

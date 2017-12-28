@@ -8,6 +8,7 @@ import net.omniblock.network.handlers.Handlers;
 import net.omniblock.network.handlers.base.sql.Database;
 import net.omniblock.network.handlers.network.NetworkManager;
 import net.omniblock.network.handlers.packets.PacketsAdapter;
+import net.omniblock.network.handlers.packets.PacketsTools;
 import net.omniblock.network.handlers.updater.object.Updatable;
 import net.omniblock.network.handlers.updater.type.PluginType;
 import net.omniblock.network.library.Libraries;
@@ -28,7 +29,7 @@ public class OmniNetwork extends JavaPlugin implements Updatable {
 	public static Plugin plugin;
 	public static OmniNetwork instance;
 
-	public static boolean debugMode = false;
+	public static boolean debugMode = true;
 
 	@Override
 	public void onEnable() {
@@ -79,7 +80,7 @@ public class OmniNetwork extends JavaPlugin implements Updatable {
 		Sockets.SERVER.startServer(SocketHelper.getOpenPort());
 
 		AdapterPatcher.setup();
-		NetworkManager.start();
+		PacketsTools.sendRegisterInfo();
 		Libraries.start();
 
 	}

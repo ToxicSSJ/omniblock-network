@@ -7,11 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import net.omniblock.network.handlers.network.NetworkManager;
+
 /**
  * 
  * Esta clase tiene funciones fundamentales para el manejo de paquetes.
  * 
- * @author zlToxicNetherlz & Wirlie
+ * @author zlToxicNetherlz
  *
  */
 public class PacketsTools {
@@ -45,6 +47,13 @@ public class PacketsTools {
 			boosters.put(gametype, playername);
 			
 		}
+		
+	}
+	
+	public static void sendRegisterInfo() {
+		
+		NetworkManager.start();
+		return;
 		
 	}
 	
