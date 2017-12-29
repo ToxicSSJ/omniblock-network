@@ -1121,8 +1121,12 @@ public class AccountManager {
 
 	public static enum AccountTagType {
 
-		IP_LOGIN("iplogin"), PRIVATE_MSG("privatemsg"), TEXTURE_SOUND("texturesound"), FRIEND_REQUEST("friendrequest"),
-
+		IP_LOGIN("iplogin"),
+		PRIVATE_MSG("privatemsg"),
+		TEXTURE_SOUND("texturesound"),
+		FRIEND_REQUEST("friendrequest"),
+		SEE_PLAYERS("seeplayers"),
+		
 		;
 
 		private String key;

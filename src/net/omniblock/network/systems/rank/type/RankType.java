@@ -90,6 +90,14 @@ public enum RankType {
 		return TextUtil.format(getPrefix() + " &" + color + player.getName());
 	}
 
+	public String getCustomName(Player player, String prefix, char color) {
+		if (getPrefix() == null)
+			return TextUtil.format(prefix + " &" + color + " " + player.getName());
+		if (getPrefix().equals("") || getPrefix() == "")
+			return TextUtil.format(" " + prefix + " &" + color + player.getName());
+		return TextUtil.format(getPrefix() + " " + prefix + " &" + color + player.getName());
+	}
+	
 	public static RankType getByName(String rankName) {
 		
 		for(RankType type : RankType.values()) {
