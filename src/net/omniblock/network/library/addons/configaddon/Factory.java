@@ -9,8 +9,8 @@ public class Factory {
 
 	public enum ConfigType {
 
-		DATABASE(new Config(OmniNetwork.getInstance(), "database/database.yml")), SSH(
-				new Config(OmniNetwork.getInstance(), "ssh/ssh.yml")),
+		DATABASE(new Config(OmniNetwork.getInstance(), "database/database.yml")), 
+		SSH(new Config(OmniNetwork.getInstance(), "ssh/ssh.yml")),
 
 		;
 

@@ -33,7 +33,7 @@ public class InventoryBuilder {
 	private String name;
 	private int size;
 	private boolean deleteOnClose;
-	private Map<Integer, Action> actions;
+	private Map<ItemStack, Action> actions;
 	private Set<Integer> editableSlots;
 
 	public enum RowsIntegers {
@@ -61,7 +61,7 @@ public class InventoryBuilder {
 	public InventoryBuilder(String name, int size, boolean deleteOnClose) {
 		this.name = TextUtil.format(name);
 		this.size = size;
-		this.actions = new HashMap<Integer, Action>();
+		this.actions = new HashMap<ItemStack, Action>();
 		this.deleteOnClose = deleteOnClose;
 		this.bukkitInventory = Bukkit.createInventory((InventoryHolder) null, (int) this.size, (String) this.name);
 		this.editableSlots = new HashSet<Integer>();
@@ -122,7 +122,7 @@ public class InventoryBuilder {
 
 	public void addItem(ItemStack stack, int slot, Action action) {
 		this.addItem(stack, slot);
-		this.actions.put(slot, action);
+		this.actions.put(stack, action);
 	}
 
 	public void placeholder(int minSlot, int maxSlot) {
@@ -152,7 +152,7 @@ public class InventoryBuilder {
 		return this.size;
 	}
 
-	public Map<Integer, Action> getActions() {
+	public Map<ItemStack, Action> getActions() {
 		return this.actions;
 	}
 

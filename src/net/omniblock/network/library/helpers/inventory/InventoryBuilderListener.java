@@ -71,7 +71,7 @@ public class InventoryBuilderListener implements Listener {
 		if (u != null) {
 			e.setCancelled(true);
 			InventoryBuilder inventory = inventoryByUUID.get(u);
-			InventoryBuilder.Action action = inventory.getActions().get(e.getSlot());
+			InventoryBuilder.Action action = inventory.getActions().get(e.getCurrentItem());
 			if (action != null) {
 				action.click(e.getClick(), p);
 			}
