@@ -2,7 +2,6 @@ package net.omniblock.network.handlers.base.sql.util;
 
 import org.apache.commons.lang.StringUtils;
 
-import net.omniblock.network.handlers.base.bases.type.AuthBase;
 import net.omniblock.network.handlers.base.sql.type.ItemType;
 import net.omniblock.network.systems.rank.type.RankType;
 
@@ -92,7 +91,7 @@ public class VariableUtils {
 		P_VIP_POINTS("VAR_P_VIP_POINTS", BANK_INITIAL_VIP_POINTS),
 		P_BANK_ITEMS("VAR_P_BANK_ITEMS", BANK_INITIAL_ITEMS),
 
-		P_PASS("VAR_P_PASS", AuthBase.DEFAULT_PASS),
+		P_PASS("VAR_P_PASS", "$ZPASS"),
 		P_EMAIL("VAR_P_EMAIL", "omniblockmc@gmail.com"),
 		P_COMMON_BOOSTER("VAR_P_COMMONBOOSTER", "NONE"),
 		P_SETTINGS("VAR_P_SETTINGS", "spanish,iplogin,privatemsg,texturesound,friendrequest,seeplayers"),

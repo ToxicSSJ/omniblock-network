@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import net.omniblock.network.OmniNetwork;
+import net.omniblock.network.handlers.network.NetworkManager;
 import net.omniblock.network.library.utils.TextUtil;
 import net.omniblock.packets.network.Packets;
 import net.omniblock.packets.network.structure.data.PacketSocketData;
@@ -18,10 +19,12 @@ public class OtherReaders {
 
 	public static void start() {
 
+		System.out.println("registering reader!");
+		
 		/*
 		 * 
 		 * El siguiente reader es el que se encarga de recibir la respuesta del
-		 * paquete de reloadeo que generalmente es enviada por el OmniCore.
+		 * paquete de reloadeo que generalmente es enviada por el OmniCord.
 		 * 
 		 */
 		Packets.READER.registerReader(new PacketReader<ResposeReloadInfoPacket>() {
@@ -29,13 +32,17 @@ public class OtherReaders {
 			@Override
 			public void readPacket(PacketSocketData<ResposeReloadInfoPacket> packetsocketdata) {
 
-				for (Player p : Bukkit.getOnlinePlayers()) {
+				if(NetworkManager.getServertype() != ServerType.MAIN_AUTH_SERVER) {
+					
+					for (Player p : Bukkit.getOnlinePlayers()) {
 
-					Packets.STREAMER
-							.streamPacket(new PlayerSendToServerPacket().setServertype(ServerType.MAIN_LOBBY_SERVER)
-									.setPlayername(p.getName()).build().setReceiver(PacketSenderType.OMNICORE));
-					continue;
+						Packets.STREAMER
+								.streamPacket(new PlayerSendToServerPacket().setServertype(ServerType.MAIN_LOBBY_SERVER)
+										.setPlayername(p.getName()).build().setReceiver(PacketSenderType.OMNICORE));
+						continue;
 
+					}
+					
 				}
 
 				new BukkitRunnable() {
@@ -54,7 +61,7 @@ public class OtherReaders {
 							for (Player p : Bukkit.getOnlinePlayers()) {
 
 								p.kickPlayer(TextUtil.format("&6¡Se están relodeando los Servidores! \n "
-										+ "&7Se te ha enviado al servidor principal (Main Lobby) mientras se hace dicho proceso."));
+										+ "&7Se te ha enviado ha expulsado mientras se hace dicho proceso."));
 								continue;
 
 							}

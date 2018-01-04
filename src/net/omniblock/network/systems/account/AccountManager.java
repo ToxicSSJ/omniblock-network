@@ -123,7 +123,7 @@ public class AccountManager {
 				friendrequest = hasTag(AccountTagType.FRIEND_REQUEST, tags);
 
 		ib.addItem(new ItemBuilder(Material.WOOL).durability(iplogin ? (short) 5 : (short) 7).amount(1)
-				.name(TextUtil.format("&7Estado Actual: &" + (iplogin ? "aHabilitado" : "7Deshabilitado"))).build(), 16,
+				.name(TextUtil.format("&8&l(&7IP Login&8&l) &7Estado Actual: &" + (iplogin ? "aHabilitado" : "7Deshabilitado"))).build(), 16,
 				new Action() {
 
 					@Override
@@ -143,7 +143,7 @@ public class AccountManager {
 				});
 
 		ib.addItem(new ItemBuilder(Material.WOOL).durability(privatemsg ? (short) 5 : (short) 7).amount(1)
-				.name(TextUtil.format("&7Estado Actual: &" + (privatemsg ? "aHabilitado" : "7Deshabilitado"))).build(),
+				.name(TextUtil.format("&8&l(&7MSG Privado&8&l) &7Estado Actual: &" + (privatemsg ? "aHabilitado" : "7Deshabilitado"))).build(),
 				25, new Action() {
 
 					@Override
@@ -163,7 +163,7 @@ public class AccountManager {
 				});
 
 		ib.addItem(new ItemBuilder(Material.WOOL).durability(texturesound ? (short) 5 : (short) 7).amount(1)
-				.name(TextUtil.format("&7Estado Actual: &" + (texturesound ? "aHabilitado" : "7Deshabilitado")))
+				.name(TextUtil.format("&8&l(&7Sondiso de Texturas&8&l) &7Estado Actual: &" + (texturesound ? "aHabilitado" : "7Deshabilitado")))
 				.build(), 34, new Action() {
 
 					@Override
@@ -183,7 +183,7 @@ public class AccountManager {
 				});
 
 		ib.addItem(new ItemBuilder(Material.WOOL).durability(friendrequest ? (short) 5 : (short) 7).amount(1)
-				.name(TextUtil.format("&7Estado Actual: &" + (friendrequest ? "aHabilitado" : "7Deshabilitado")))
+				.name(TextUtil.format("&8&l(&7Solicitudes de Amistad&8&l) &7Estado Actual: &" + (friendrequest ? "aHabilitado" : "7Deshabilitado")))
 				.build(), 43, new Action() {
 
 					@Override

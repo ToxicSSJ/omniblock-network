@@ -3,7 +3,7 @@ main: net.omniblock.network.OmniNetwork
 depend: [OmniPackets]
 load: STARTUP
 author: Omniblock Developers Team
-version: 2.0.1
+version: 2.5.7
 description: Plugin core de OmniBlock
 website: www.omniblock.net
 commands:

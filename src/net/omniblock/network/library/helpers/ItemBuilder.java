@@ -28,7 +28,9 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.material.MaterialData;
+import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionType;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -432,6 +434,7 @@ public class ItemBuilder {
 		return this;
 	}
 
+	@SuppressWarnings("deprecation")
 	public ItemBuilder setPotionEffect(PotionEffect effect) {
 		
 		try {
@@ -439,6 +442,7 @@ public class ItemBuilder {
 			PotionMeta im = (PotionMeta) item.getItemMeta();
 
 			im.addCustomEffect(effect, true);
+			im.setBasePotionData(new PotionData(PotionType.getByEffect(effect.getType())));
 			item.setItemMeta(im);
 
 		} catch (ClassCastException expected) {
