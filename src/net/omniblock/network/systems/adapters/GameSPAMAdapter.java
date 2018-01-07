@@ -54,7 +54,7 @@ public class GameSPAMAdapter implements Listener {
 					return;
 				}
 			}
-		}.runTaskLater(OmniNetwork.getInstance(), 20 * 4));
+		}.runTaskLater(OmniNetwork.getInstance(), 20 * 8));
 
 		return true;
 
