@@ -98,30 +98,6 @@ public enum RankType {
 		return TextUtil.format(getPrefix() + " " + prefix + " &" + color + player.getName());
 	}
 	
-	public String getCustomName(String player) {
-		if (getPrefix() == null)
-			return TextUtil.format("&7" + player);
-		if (getPrefix().equals("") || getPrefix() == "")
-			return TextUtil.format("&7" + player);
-		return TextUtil.format(getPrefix() + " &7" + player);
-	}
-
-	public String getCustomName(String player, char color) {
-		if (getPrefix() == null)
-			return TextUtil.format("&" + color + player);
-		if (getPrefix().equals("") || getPrefix() == "")
-			return TextUtil.format("&" + color + player);
-		return TextUtil.format(getPrefix() + " &" + color + player);
-	}
-
-	public String getCustomName(String player, String prefix, char color) {
-		if (getPrefix() == null)
-			return TextUtil.format(prefix + " &" + color + " " + player);
-		if (getPrefix().equals("") || getPrefix() == "")
-			return TextUtil.format(" " + prefix + " &" + color + player);
-		return TextUtil.format(getPrefix() + " " + prefix + " &" + color + player);
-	}
-	
 	public static RankType getByName(String rankName) {
 		
 		for(RankType type : RankType.values()) {
