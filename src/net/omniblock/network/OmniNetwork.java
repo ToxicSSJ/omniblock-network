@@ -29,7 +29,7 @@ public class OmniNetwork extends JavaPlugin implements Updatable {
 	public static Plugin plugin;
 	public static OmniNetwork instance;
 
-	public static boolean debugMode = false;
+	public static boolean debugMode = true;
 
 	@Override
 	public void onEnable() {
