@@ -100,4 +100,16 @@ public class TileUtils {
 		
 	}
 	
+	/**
+	 * Buscar un bloque atado a un hopper
+	 */
+	public static Block getBlockByHopper(Hopper hopper){
+		
+		org.bukkit.material.Hopper hopperMaterial = (org.bukkit.material.Hopper) hopper.getData();
+		BlockFace attachedFace = hopperMaterial.getFacing();
+		
+		Block block = hopper.getBlock().getRelative(attachedFace);
+		
+		return block;
+	}
 }
