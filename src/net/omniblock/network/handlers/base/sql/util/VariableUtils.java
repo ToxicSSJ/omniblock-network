@@ -85,6 +85,7 @@ public class VariableUtils {
 		P_TEMPORAL_RANK_EXPIRE("VAR_P_TEMP_EXPIRE", ""),
 
 		P_LOOT("VAR_P_LOOT", ""),
+		P_WARPS("VAR_P_WARPS", ""),
 
 		P_EXP("VAR_P_EXP", BANK_INITIAL_EXP),
 		P_MONEY("VAR_P_MONEY", BANK_INITIAL_MONEY),
