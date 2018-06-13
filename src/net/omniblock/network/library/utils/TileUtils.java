@@ -38,7 +38,7 @@ public class TileUtils {
 		
 		Block chestBlock = sign.getBlock().getRelative(attachedFace);
 		
-		if(chestBlock.getType() == Material.CHEST)
+		if(chestBlock.getType() == Material.CHEST || chestBlock.getType() == Material.TRAPPED_CHEST)
 			if(chestBlock.getState() instanceof Chest)
 				return (Chest) chestBlock.getState();
 		
