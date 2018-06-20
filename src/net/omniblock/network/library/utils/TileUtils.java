@@ -31,7 +31,7 @@ public class TileUtils {
 	 * el tipo de objeto 'Chest' o 'Trapped Chest'.
 	 * @see Chest
 	 */
-public static Chest getChestBehindSign(Sign sign) {
+	public static Chest getChestBehindSign(Sign sign) {
 		
 		org.bukkit.material.Sign signMaterial = (org.bukkit.material.Sign) sign.getData();
 		BlockFace attachedFace = signMaterial.getAttachedFace();
