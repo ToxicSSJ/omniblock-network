@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Omniblock-Network:jar">
+    <output-path>$PROJECT_DIR$/../CompiledJars</output-path>
+    <root id="archive" name="OmniblockNetwork.jar">
+      <element id="module-output" name="Omniblock-Network" />
+    </root>
+  </artifact>
+</component>
