@@ -3,6 +3,11 @@
     <output-path>$PROJECT_DIR$/../CompiledJars</output-path>
     <root id="archive" name="OmniblockNetwork.jar">
       <element id="module-output" name="Omniblock-Network" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+      <element id="dir-copy" path="$PROJECT_DIR$/ssh" />
+      <element id="dir-copy" path="$PROJECT_DIR$/database" />
+      <element id="dir-copy" path="$PROJECT_DIR$/net" />
+      <element id="dir-copy" path="$PROJECT_DIR$/com" />
     </root>
   </artifact>
 </component>
