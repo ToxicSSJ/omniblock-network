@@ -71,6 +71,7 @@ public class OmniNetwork extends JavaPlugin implements Updatable {
 	 * 
 	 */
 	public void Implements() {
+		Bukkit.getPluginManager().registerEvents(new SingleListener(), this);
 
 		Database.makeConnection();
 
