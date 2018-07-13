@@ -13,6 +13,7 @@ package net.omniblock.network.handlers.network;
 import java.util.Calendar;
 import java.util.Date;
 
+import net.omniblock.packets.network.structure.packet.RegisterSystemServerPacket;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -80,6 +81,11 @@ public class NetworkManager {
 						.setStaffserver(OmniNetwork.isStaffServer(NetworkManager.getServertype()))
 						.setOtherserver(OmniNetwork.isOtherServer(NetworkManager.getServertype())).build()
 						.setReceiver(PacketSenderType.OMNICORE));
+
+				Packets.STREAMER.streamPacket(new RegisterSystemServerPacket()
+						.setServerType(servertype)
+						.setSocketport(ServerSocketAdapter.serverPort)
+						.build().setReceiver(PacketSenderType.SYSTEMCORE));
 
 			}
 		}.runTaskLater(OmniNetwork.getInstance(), 1L);
