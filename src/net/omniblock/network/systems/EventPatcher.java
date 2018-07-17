@@ -2,12 +2,7 @@ package net.omniblock.network.systems;
 
 import net.omniblock.network.OmniNetwork;
 import net.omniblock.network.library.utils.TextUtil;
-import net.omniblock.network.systems.adapters.GameCHATAdapter;
-import net.omniblock.network.systems.adapters.GameCMDAdapter;
-import net.omniblock.network.systems.adapters.GameJOINAdapter;
-import net.omniblock.network.systems.adapters.GameSPAMAdapter;
-import net.omniblock.network.systems.adapters.GameSTRIKEAdapter;
-import net.omniblock.network.systems.adapters.GameTABAdapter;
+import net.omniblock.network.systems.adapters.*;
 import net.omniblock.network.systems.ban.BanManager;
 import net.omniblock.network.systems.rank.RankManager;
 
@@ -38,6 +33,8 @@ public class EventPatcher {
 	public static void setup() {
 
 		OmniNetwork.getInstance().getServer().getPluginManager().registerEvents(new GameCHATAdapter(),
+				OmniNetwork.getInstance());
+		OmniNetwork.getInstance().getServer().getPluginManager().registerEvents(new GameLEAVEAdapter(),
 				OmniNetwork.getInstance());
 		OmniNetwork.getInstance().getServer().getPluginManager().registerEvents(new GameTABAdapter(),
 				OmniNetwork.getInstance());
