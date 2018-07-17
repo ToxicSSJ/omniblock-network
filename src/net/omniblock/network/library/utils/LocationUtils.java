@@ -60,14 +60,14 @@ public class LocationUtils {
 		if(Bukkit.getWorld(splittedLocation[0]) == null)
 			throw new UnsupportedOperationException("El mundo '" + splittedLocation[0] + " no existe.");
 
-		if(splittedLocation.length == 3) {
+		if(splittedLocation.length == 4) {
 			return new Location(
 					Bukkit.getWorld(splittedLocation[0]),
 					Double.valueOf(splittedLocation[1]),
 					Double.valueOf(splittedLocation[2]),
 					Double.valueOf(splittedLocation[3]));
 		} else {
-			if(StringUtils.countMatches(location, ",") < 3) {
+			if(StringUtils.countMatches(location, ",") < 6) {
 				throw new UnsupportedOperationException("El formato de la localización no es valido.");
 			}
 
