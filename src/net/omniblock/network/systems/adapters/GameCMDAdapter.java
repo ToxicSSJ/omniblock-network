@@ -31,6 +31,19 @@ public class GameCMDAdapter implements Listener {
 		ACTIVED_COMMANDS.add("friends");
 		ACTIVED_COMMANDS.add("rank");
 
+		ACTIVED_COMMANDS.add("money");
+		ACTIVED_COMMANDS.add("dinero");
+		ACTIVED_COMMANDS.add("trabajos");
+		ACTIVED_COMMANDS.add("warps");
+		ACTIVED_COMMANDS.add("lobby");
+		ACTIVED_COMMANDS.add("hub");
+		ACTIVED_COMMANDS.add("spawn");
+
+		ACTIVED_COMMANDS.add("pblocks");
+		ACTIVED_COMMANDS.add("protectionb");
+		ACTIVED_COMMANDS.add("ores");
+		ACTIVED_COMMANDS.add("pb");
+		ACTIVED_COMMANDS.add("ps");
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)

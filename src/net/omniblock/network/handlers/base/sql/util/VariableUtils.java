@@ -16,7 +16,7 @@ public class VariableUtils {
 	public static int BANK_INITIAL_VIP_POINTS = 0;
 	public static String BANK_INITIAL_ITEMS = ItemType.GIF_MINI_COW_PET.getHashid();
 
-	public static String SKYWARS_INITIAL_ITEMS = "{}";
+	public static String SKYWARS_INITIAL_ITEMS = "J0;K0";
 	public static int SKYWARS_INITIAL_EXTRA_POINTS = 0;
 	public static int SKYWARS_WEEKPRIZE_POINTS = 0;
 	public static String SKYWARS_INITIAL_SELECTED = "J0;K0;B0;D0";
