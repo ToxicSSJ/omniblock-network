@@ -31,7 +31,7 @@ public class LocationUtils {
 		if(location == null)
 			return null;
 		
-		return new String(location.getWorld().getName() + "," + location.getX() + "," + location.getY() + "," + location.getZ());
+		return location.getWorld().getName() + "," + location.getX() + "," + location.getY() + "," + location.getZ() + "," + location.getYaw() + "," + location.getPitch();
 		
 	}
 	
@@ -59,13 +59,26 @@ public class LocationUtils {
 		
 		if(Bukkit.getWorld(splittedLocation[0]) == null)
 			throw new UnsupportedOperationException("El mundo '" + splittedLocation[0] + " no existe.");
-		
-		return new Location(
-				Bukkit.getWorld(splittedLocation[0]), 
-				Double.valueOf(splittedLocation[1]), 
-				Double.valueOf(splittedLocation[2]),
-				Double.valueOf(splittedLocation[3]));
-		
+
+		if(splittedLocation.length == 3) {
+			return new Location(
+					Bukkit.getWorld(splittedLocation[0]),
+					Double.valueOf(splittedLocation[1]),
+					Double.valueOf(splittedLocation[2]),
+					Double.valueOf(splittedLocation[3]));
+		} else {
+			if(StringUtils.countMatches(location, ",") < 3) {
+				throw new UnsupportedOperationException("El formato de la localización no es valido.");
+			}
+
+			return new Location(
+					Bukkit.getWorld(splittedLocation[0]),
+					Double.valueOf(splittedLocation[1]),
+					Double.valueOf(splittedLocation[2]),
+					Double.valueOf(splittedLocation[3]),
+					Float.valueOf(splittedLocation[4]),
+					Float.valueOf(splittedLocation[5]));
+		}
 	}
 	
 }
