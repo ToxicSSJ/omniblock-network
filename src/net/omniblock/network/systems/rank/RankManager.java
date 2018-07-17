@@ -1,10 +1,8 @@
 package net.omniblock.network.systems.rank;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
+import net.omniblock.network.library.utils.ExpirablePlayerData;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -33,6 +31,7 @@ public class RankManager implements Listener, CommandExecutor {
 
 	public static Map<RankType, Set<String>> permissions = new HashMap<RankType, Set<String>>();
 	public static Map<RankType, RankType> carriers = new HashMap<RankType, RankType>();
+	private static ExpirablePlayerData<RankType> cachedRanks = new ExpirablePlayerData<>();
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -88,8 +87,12 @@ public class RankManager implements Listener, CommandExecutor {
 
 		e.setJoinMessage(null);
 
-		e.getPlayer().setPlayerListName(RankBase.getRank(e.getPlayer()).getCustomName(e.getPlayer()));
-		e.getPlayer().setDisplayName(RankBase.getRank(e.getPlayer()).getCustomName(e.getPlayer()));
+		RankType userRank = RankBase.getRank(e.getPlayer());
+
+		e.getPlayer().setPlayerListName(userRank.getCustomName(e.getPlayer()));
+		e.getPlayer().setDisplayName(userRank.getCustomName(e.getPlayer()));
+
+		cachedRanks.put(e.getPlayer(), userRank);
 
 		if (player.isOp()) {
 			if (OmniNetwork.debugMode) {
@@ -131,6 +134,10 @@ public class RankManager implements Listener, CommandExecutor {
 
 		}
 
+	}
+
+	public static Optional<RankType> getCachedRank(Player player) {
+		return Optional.ofNullable(cachedRanks.get(player));
 	}
 
 	public static void updatePermissions() {
