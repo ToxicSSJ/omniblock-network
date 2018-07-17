@@ -58,7 +58,7 @@ public class OmniNetwork extends JavaPlugin implements Updatable {
 
 		Packets.STREAMER.streamPacket(new RemoveSystemServerPacket()
 				.setServer(OmniNetwork.getServerTypeByServername(Bukkit.getServerName()))
-				.build().setReceiver(PacketSenderType.SYSTEMCORE));
+				.build().setReceiver(PacketSenderType.OMNICORE));
 
 	}
 

@@ -64,6 +64,11 @@ public class NetworkManager {
 			@Override
 			public void run() {
 
+				Packets.STREAMER.streamPacket(new RegisterSystemServerPacket()
+						.setServerType(servertype)
+						.setSocketport(ServerSocketAdapter.serverPort)
+						.build().setReceiver(PacketSenderType.OMNICORE));
+
 				Handlers.LOGGER
 						.sendInfo(TextUtil.format("&7Se ha detectado este servidor como: " + servertype.toString()));
 
@@ -82,13 +87,9 @@ public class NetworkManager {
 						.setOtherserver(OmniNetwork.isOtherServer(NetworkManager.getServertype())).build()
 						.setReceiver(PacketSenderType.OMNICORE));
 
-				Packets.STREAMER.streamPacket(new RegisterSystemServerPacket()
-						.setServerType(servertype)
-						.setSocketport(ServerSocketAdapter.serverPort)
-						.build().setReceiver(PacketSenderType.SYSTEMCORE));
 
 			}
-		}.runTaskLater(OmniNetwork.getInstance(), 1L);
+		}.runTaskLater(OmniNetwork.getInstance(), 2L);
 
 		if (gamepreset != GamePreset.NONE) {
 
