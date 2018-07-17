@@ -27,9 +27,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.map.MapRenderer;
+import org.bukkit.map.MapView;
 import org.bukkit.material.MaterialData;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 
 import java.lang.reflect.InvocationTargetException;
@@ -43,13 +46,11 @@ public class ItemBuilder {
 	private Material material = Material.STONE;
 	private int amount = 1;
 	private MaterialData data;
-	private Color color;
 	private short damage = 0;
 	private Map<Enchantment, Integer> enchantments = new HashMap<>();
 	private String displayname;
 	private List<String> lore = new ArrayList<>();
 	private List<ItemFlag> flags = new ArrayList<>();
-
 	private boolean andSymbol = true;
 	private boolean unsafeStackSize = false;
 
@@ -136,16 +137,13 @@ public class ItemBuilder {
 
 	/**
 	 * Initalizes the ItemBuilder with an already existing
-	 * {@link cc.acquized.itembuilder.api.ItemBuilder}
-	 * 
+	 *
 	 * @deprecated Use the already initalized {@code ItemBuilder} Instance to
 	 *             improve performance
 	 */
 	@Deprecated
 	public ItemBuilder(ItemBuilder builder) {
-
 		Validate.notNull(builder, "The ItemBuilder is null.");
-
 		this.item = builder.item;
 		this.meta = builder.meta;
 		this.material = builder.material;
@@ -157,12 +155,11 @@ public class ItemBuilder {
 		this.displayname = builder.displayname;
 		this.lore = builder.lore;
 		this.flags = builder.flags;
-
 	}
 
 	/**
 	 * Sets the Amount of the ItemStack
-	 * 
+	 *
 	 * @param amount
 	 *            Amount for the ItemStack
 	 */
@@ -175,7 +172,7 @@ public class ItemBuilder {
 
 	/**
 	 * Sets the {@link org.bukkit.material.MaterialData} of the ItemStack
-	 * 
+	 *
 	 * @param data
 	 *            MaterialData for the ItemStack
 	 */
@@ -187,7 +184,7 @@ public class ItemBuilder {
 
 	/**
 	 * Sets the Damage of the ItemStack
-	 * 
+	 *
 	 * @param damage
 	 *            Damage for the ItemStack
 	 * @deprecated Use {@code ItemBuilder#durability}
@@ -198,15 +195,10 @@ public class ItemBuilder {
 		return this;
 	}
 
-	public ItemBuilder color(Color color) {
-		this.color = color;
-		return this;
-	}
-
 	/**
 	 * Sets the Durability (Damage) of the ItemStack
-	 * 
-	 * @param damage
+	 *
+	 * @param durability
 	 *            Damage for the ItemStack
 	 */
 	public ItemBuilder durability(short durability) {
@@ -216,13 +208,34 @@ public class ItemBuilder {
 
 	/**
 	 * Sets the Data (Damage) of the ItemStack
-	 * 
-	 * @param damage
+	 *
+	 * @param data
 	 *            Damage for the ItemStack
 	 */
 	public ItemBuilder data(int data) {
 		this.damage = (short) data;
 		return this;
+	}
+
+	@SuppressWarnings("deprecation")
+	public ItemBuilder setMapRenderer(MapRenderer renderer) {
+
+		if(material == Material.MAP || material == Material.EMPTY_MAP) {
+
+			MapView view = Bukkit.getMap(this.getDurability());
+
+			Iterator<MapRenderer> iter = view.getRenderers().iterator();
+
+			while(iter.hasNext()){
+				view.removeRenderer(iter.next());
+			}
+
+			view.addRenderer(renderer);
+
+		}
+
+		return this;
+
 	}
 
 	public ItemBuilder hideAtributes() {
@@ -236,7 +249,7 @@ public class ItemBuilder {
 
 	/**
 	 * Sets the {@link org.bukkit.Material} of the ItemStack
-	 * 
+	 *
 	 * @param material
 	 *            Material for the ItemStack
 	 */
@@ -248,7 +261,7 @@ public class ItemBuilder {
 
 	/**
 	 * Sets the {@link org.bukkit.inventory.meta.ItemMeta} of the ItemStack
-	 * 
+	 *
 	 * @param meta
 	 *            Meta for the ItemStack
 	 */
@@ -260,7 +273,7 @@ public class ItemBuilder {
 
 	/**
 	 * Adds a {@link org.bukkit.enchantments.Enchantment} to the ItemStack
-	 * 
+	 *
 	 * @param enchant
 	 *            Enchantment for the ItemStack
 	 * @param level
@@ -272,20 +285,20 @@ public class ItemBuilder {
 		return this;
 	}
 
-	public ItemBuilder enchantByBoolean(Enchantment enchant, int level, boolean factor) {
+    public ItemBuilder enchantByBoolean(Enchantment enchant, int level, boolean factor) {
 
-		if (factor == false)
-			return this;
+        if (factor == false)
+            return this;
 
-		Validate.notNull(enchant, "The Enchantment is null.");
-		enchantments.put(enchant, level);
-		return this;
-	}
+        Validate.notNull(enchant, "The Enchantment is null.");
+        enchantments.put(enchant, level);
+        return this;
+    }
 
 	/**
 	 * Adds a list of {@link org.bukkit.enchantments.Enchantment} to the
 	 * ItemStack
-	 * 
+	 *
 	 * @param enchantments
 	 *            Map containing Enchantment and Level for the ItemStack
 	 */
@@ -295,9 +308,20 @@ public class ItemBuilder {
 		return this;
 	}
 
+	public ItemBuilder arrow(PotionEffectType pt, int seconds, int level) {
+		if (item.getType() == Material.ARROW) {
+			PotionMeta pm = (PotionMeta) item.getItemMeta();
+			pm.addCustomEffect(new PotionEffect(pt, seconds * 20, level), true);
+			item.setItemMeta(pm);
+			return this;
+		} else {
+			throw new IllegalArgumentException("Un error fatal al elegir el tipo de flecha.");
+		}
+	}
+
 	/**
 	 * Sets the Displayname of the ItemStack
-	 * 
+	 *
 	 * @param displayname
 	 *            Displayname for the ItemStack
 	 */
@@ -309,7 +333,7 @@ public class ItemBuilder {
 
 	/**
 	 * Sets the Displayname of the ItemStack
-	 * 
+	 *
 	 * @param displayname
 	 *            Displayname for the ItemStack
 	 */
@@ -321,19 +345,20 @@ public class ItemBuilder {
 
 	/**
 	 * Adds a Line to the Lore of the ItemStack
-	 * 
+	 *
 	 * @param line
 	 *            Line of the Lore for the ItemStack
 	 */
 	public ItemBuilder lore(String line) {
-		Validate.notNull(line, "The Line is null.");
-		lore.add(andSymbol ? ChatColor.translateAlternateColorCodes('&', line) : line);
+		Validate.notNull(TextUtil.format(line), "The Line is null.");
+		lore.add(
+				andSymbol ? ChatColor.translateAlternateColorCodes('&', TextUtil.format(line)) : TextUtil.format(line));
 		return this;
 	}
 
 	/**
 	 * Sets the Lore of the ItemStack
-	 * 
+	 *
 	 * @param lore
 	 *            List containing String as Lines for the ItemStack Lore
 	 */
@@ -345,7 +370,7 @@ public class ItemBuilder {
 
 	/**
 	 * Adds one or more Lines to the Lore of the ItemStack
-	 * 
+	 *
 	 * @param lines
 	 *            One or more Strings for the ItemStack Lore
 	 * @deprecated Use {@code ItemBuilder#lore}
@@ -365,7 +390,7 @@ public class ItemBuilder {
 
 	/**
 	 * Adds one or more Lines to the Lore of the ItemStack
-	 * 
+	 *
 	 * @param lines
 	 *            One or more Strings for the ItemStack Lore
 	 */
@@ -379,21 +404,22 @@ public class ItemBuilder {
 
 	/**
 	 * Adds a String at a specified position in the Lore of the ItemStack
-	 * 
+	 *
 	 * @param line
 	 *            Line of the Lore for the ItemStack
 	 * @param index
 	 *            Position in the Lore for the ItemStack
 	 */
 	public ItemBuilder lore(String line, int index) {
-		Validate.notNull(line, "The Line is null.");
-		lore.set(index, andSymbol ? ChatColor.translateAlternateColorCodes('&', line) : line);
+		Validate.notNull(TextUtil.format(line), "The Line is null.");
+		lore.set(index,
+				andSymbol ? ChatColor.translateAlternateColorCodes('&', TextUtil.format(line)) : TextUtil.format(line));
 		return this;
 	}
 
 	/**
 	 * Adds a {@link org.bukkit.inventory.ItemFlag} to the ItemStack
-	 * 
+	 *
 	 * @param flag
 	 *            ItemFlag for the ItemStack
 	 */
@@ -405,7 +431,7 @@ public class ItemBuilder {
 
 	/**
 	 * Adds more than one {@link org.bukkit.inventory.ItemFlag} to the ItemStack
-	 * 
+	 *
 	 * @param flags
 	 *            List containing all ItemFlags
 	 */
@@ -417,7 +443,7 @@ public class ItemBuilder {
 
 	/**
 	 * Makes or removes the Unbreakable Flag from the ItemStack
-	 * 
+	 *
 	 * @param unbreakable
 	 *            If it should be unbreakable
 	 */
@@ -434,39 +460,71 @@ public class ItemBuilder {
 		return this;
 	}
 
-	@SuppressWarnings("deprecation")
-	public ItemBuilder setPotionEffect(PotionEffect effect) {
-		
-		try {
+    @SuppressWarnings("deprecation")
+    public ItemBuilder setPotionEffect(PotionEffect effect) {
 
-			PotionMeta im = (PotionMeta) item.getItemMeta();
+        try {
 
-			im.addCustomEffect(effect, true);
-			im.setBasePotionData(new PotionData(PotionType.getByEffect(effect.getType())));
-			item.setItemMeta(im);
+            PotionMeta im = (PotionMeta) item.getItemMeta();
 
-		} catch (ClassCastException expected) {
+            im.addCustomEffect(effect, true);
+            im.setBasePotionData(new PotionData(PotionType.getByEffect(effect.getType())));
+            item.setItemMeta(im);
+
+        } catch (ClassCastException expected) {
+        }
+
+        return this;
+
+    }
+
+	/**
+	 * Sets the Skin for the Skull
+	 *
+	 * @param user
+	 *            Username of the Skull
+	 * @deprecated Make it yourself - This Meta destrys the already setted Metas
+	 */
+	public ItemBuilder owner(String user) {
+		Validate.notNull(user, "The Username is null.");
+		if (user != null) {
+			if ((material == Material.SKULL_ITEM) || (material == Material.SKULL)) {
+				SkullMeta smeta = (SkullMeta) item.getItemMeta();
+				smeta.setOwner(user);
+				meta = smeta;
+				item.setItemMeta(smeta);
+			}
 		}
-
 		return this;
-		
 	}
-	
-	@SuppressWarnings("deprecation")
-	public ItemBuilder setSkullOwner(String owner) {
 
-		try {
+    @SuppressWarnings("deprecation")
+    public ItemBuilder setSkullOwner(String owner) {
 
-			SkullMeta im = (SkullMeta) item.getItemMeta();
+        try {
 
-			im.setOwner(owner);
-			item.setItemMeta(im);
+            SkullMeta im = (SkullMeta) item.getItemMeta();
 
-		} catch (ClassCastException expected) {
+            im.setOwner(owner);
+            item.setItemMeta(im);
+
+        } catch (ClassCastException expected) {
+        }
+
+        return this;
+
+    }
+
+	public ItemBuilder potion(PotionEffectType pet) {
+		Validate.notNull(pet, "The Potion Effect Type is null.");
+		if (pet != null) {
+			if ((material == Material.POTION)) {
+				PotionMeta pm = (PotionMeta) item.getItemMeta();
+				pm.addCustomEffect(new PotionEffect(pet, 1, 1), true);
+				item.setItemMeta(pm);
+			}
 		}
-
 		return this;
-
 	}
 
 	/** Returns the Unsafe Class containing NBT Methods */
@@ -476,7 +534,7 @@ public class ItemBuilder {
 
 	/**
 	 * Toggles replacement of the '&' Characters in Strings
-	 * 
+	 *
 	 * @deprecated Use {@code ItemBuilder#toggleReplaceAndSymbol}
 	 */
 	@Deprecated
@@ -487,7 +545,7 @@ public class ItemBuilder {
 
 	/**
 	 * Enables / Disables replacement of the '&' Character in Strings
-	 * 
+	 *
 	 * @param replace
 	 *            Determinates if it should be replaced or not
 	 */
@@ -504,7 +562,7 @@ public class ItemBuilder {
 
 	/**
 	 * Allows / Disallows Stack Sizes under 1 and above 64
-	 * 
+	 *
 	 * @param allow
 	 *            Determinates if it should be allowed or not
 	 */
@@ -536,7 +594,7 @@ public class ItemBuilder {
 
 	/**
 	 * Returns the Damage
-	 * 
+	 *
 	 * @deprecated Use {@code ItemBuilder#getDurability}
 	 */
 	@Deprecated
@@ -581,7 +639,7 @@ public class ItemBuilder {
 
 	/**
 	 * Returns all Lores
-	 * 
+	 *
 	 * @deprecated Use {@code ItemBuilder#getLores}
 	 */
 	@Deprecated
@@ -591,7 +649,7 @@ public class ItemBuilder {
 
 	/**
 	 * Converts the Item to a ConfigStack and writes it to path
-	 * 
+	 *
 	 * @param cfg
 	 *            Configuration File to which it should be writed
 	 * @param path
@@ -604,7 +662,7 @@ public class ItemBuilder {
 
 	/**
 	 * Converts back the ConfigStack to a ItemBuilder
-	 * 
+	 *
 	 * @param cfg
 	 *            Configuration File from which it should be read
 	 * @param path
@@ -616,7 +674,7 @@ public class ItemBuilder {
 
 	/**
 	 * Converts the Item to a ConfigStack and writes it to path
-	 * 
+	 *
 	 * @param cfg
 	 *            Configuration File to which it should be writed
 	 * @param path
@@ -630,7 +688,7 @@ public class ItemBuilder {
 
 	/**
 	 * Converts the ItemBuilder to a JsonItemBuilder
-	 * 
+	 *
 	 * @return The ItemBuilder as JSON String
 	 */
 	public String toJson() {
@@ -639,7 +697,7 @@ public class ItemBuilder {
 
 	/**
 	 * Converts the ItemBuilder to a JsonItemBuilder
-	 * 
+	 *
 	 * @param builder
 	 *            Which ItemBuilder should be converted
 	 * @return The ItemBuilder as JSON String
@@ -650,7 +708,7 @@ public class ItemBuilder {
 
 	/**
 	 * Converts the JsonItemBuilder back to a ItemBuilder
-	 * 
+	 *
 	 * @param json
 	 *            Which JsonItemBuilder should be converted
 	 */
@@ -660,7 +718,7 @@ public class ItemBuilder {
 
 	/**
 	 * Applies the currently ItemBuilder to the JSONItemBuilder
-	 * 
+	 *
 	 * @param json
 	 *            Already existing JsonItemBuilder
 	 * @param overwrite
@@ -698,37 +756,18 @@ public class ItemBuilder {
 		if (data != null) {
 			item.setData(data);
 		}
-		if (enchantments.size() > 0) {
-			enchantments.entrySet().forEach(entry -> {
-				meta.addEnchant(entry.getKey(), entry.getValue(), true);
-			});
+		for (Map.Entry<Enchantment, Integer> entry : this.enchantments.entrySet()) {
+			meta.addEnchant(entry.getKey(), entry.getValue().intValue(), true);
 		}
 		if (displayname != null) {
 			meta.setDisplayName(TextUtil.format(displayname));
 		}
 		if (lore.size() > 0) {
-
-			List<String> coloredlore = new ArrayList<String>();
-
-			for (String k : lore) {
-				coloredlore.add(TextUtil.format(k));
-			}
-
-			meta.setLore(coloredlore);
-
+			meta.setLore(lore);
 		}
 		if (flags.size() > 0) {
 			for (ItemFlag f : flags) {
 				meta.addItemFlags(f);
-			}
-		}
-		if (color != null) {
-			if (item.getType() == Material.LEATHER_HELMET || item.getType() == Material.LEATHER_CHESTPLATE
-					|| item.getType() == Material.LEATHER_LEGGINGS || item.getType() == Material.LEATHER_BOOTS) {
-
-				LeatherArmorMeta leathermeta = (LeatherArmorMeta) meta;
-				leathermeta.setColor(color);
-
 			}
 		}
 		item.setItemMeta(meta);
@@ -737,10 +776,8 @@ public class ItemBuilder {
 
 	/** Contains NBT Tags Methods */
 	public class Unsafe {
-
 		/** Do not access using this Field */
 		protected final ReflectionUtils utils = new ReflectionUtils();
-
 		/** Do not access using this Field */
 		protected final ItemBuilder builder;
 
@@ -751,7 +788,7 @@ public class ItemBuilder {
 
 		/**
 		 * Sets a NBT Tag {@code String} into the NBT Tag Compound of the Item
-		 * 
+		 *
 		 * @param key
 		 *            The Name on which the NBT Tag should be saved
 		 * @param value
@@ -769,7 +806,7 @@ public class ItemBuilder {
 
 		/**
 		 * Sets a NBT Tag {@code Integer} into the NBT Tag Compound of the Item
-		 * 
+		 *
 		 * @param key
 		 *            The Name on which the NBT Tag should be savbed
 		 * @param value
@@ -787,7 +824,7 @@ public class ItemBuilder {
 
 		/**
 		 * Sets a NBT Tag {@code Double} into the NBT Tag Compound of the Item
-		 * 
+		 *
 		 * @param key
 		 *            The Name on which the NBT Tag should be savbed
 		 * @param value
@@ -805,7 +842,7 @@ public class ItemBuilder {
 
 		/**
 		 * Sets a NBT Tag {@code Boolean} into the NBT Tag Compound of the Item
-		 * 
+		 *
 		 * @param key
 		 *            The Name on which the NBT Tag should be savbed
 		 * @param value
@@ -836,7 +873,6 @@ public class ItemBuilder {
 		 * touched unless you want to break the ItemBuilder
 		 */
 		public class ReflectionUtils {
-
 			public String getString(ItemStack item, String key) {
 				Object compound = getNBTTagCompound(getItemAsNMSStack(item));
 				if (compound == null) {
@@ -1021,7 +1057,6 @@ public class ItemBuilder {
 				}
 				return null;
 			}
-
 		}
 	}
 }
