@@ -136,8 +136,14 @@ public class RankManager implements Listener, CommandExecutor {
 
 	}
 
-	public static Optional<RankType> getCachedRank(Player player) {
-		return Optional.ofNullable(cachedRanks.get(player));
+	public static RankType getCachedRank(Player player) {
+		if(!cachedRanks.containsPlayer(player)) {
+			RankType userRank = RankBase.getRank(player);
+			cachedRanks.put(player, userRank);
+			return userRank;
+		}
+
+		return cachedRanks.get(player);
 	}
 
 	public static void updatePermissions() {

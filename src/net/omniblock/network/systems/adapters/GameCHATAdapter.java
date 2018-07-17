@@ -19,8 +19,7 @@ public class GameCHATAdapter implements Listener {
 		if (e.isCancelled())
 			return;
 
-		Optional<RankType> optionalValue = RankManager.getCachedRank(e.getPlayer());
-		optionalValue.ifPresent(rankType -> e.getPlayer().setDisplayName(rankType.getCustomName(e.getPlayer())));
+		 e.getPlayer().setDisplayName(RankManager.getCachedRank(e.getPlayer()).getCustomName(e.getPlayer()));
 
 		e.setFormat(TextUtil.format("%s:&f %s"));
 	}
