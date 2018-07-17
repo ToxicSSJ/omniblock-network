@@ -1,5 +1,6 @@
 package net.omniblock.network;
 
+import net.omniblock.packets.network.structure.packet.RemoveSystemServerPacket;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -54,6 +55,10 @@ public class OmniNetwork extends JavaPlugin implements Updatable {
 
 		Packets.STREAMER.streamPacket(new ServerRemoveInfoPacket().setServername(Bukkit.getServerName()).build()
 				.setReceiver(PacketSenderType.OMNICORE));
+
+		Packets.STREAMER.streamPacket(new RemoveSystemServerPacket()
+				.setServer(OmniNetwork.getServerTypeByServername(Bukkit.getServerName()))
+				.build().setReceiver(PacketSenderType.SYSTEMCORE));
 
 	}
 

@@ -28,7 +28,7 @@ public class TileUtils {
 	 * 
 	 * @param sign El cartel.
 	 * @return El Cofre detr�s de un cartel con
-	 * el tipo de objeto 'Chest'.
+	 * el tipo de objeto 'Chest' o 'Trapped Chest'.
 	 * @see Chest
 	 */
 	public static Chest getChestBehindSign(Sign sign) {
@@ -38,7 +38,7 @@ public class TileUtils {
 		
 		Block chestBlock = sign.getBlock().getRelative(attachedFace);
 		
-		if(chestBlock.getType() == Material.CHEST)
+		if(chestBlock.getType() == Material.CHEST || chestBlock.getType() == Material.TRAPPED_CHEST)
 			if(chestBlock.getState() instanceof Chest)
 				return (Chest) chestBlock.getState();
 		
@@ -100,4 +100,16 @@ public class TileUtils {
 		
 	}
 	
+	/**
+	 * Buscar un bloque atado a un hopper
+	 */
+	public static Block getBlockByHopper(Hopper hopper){
+		
+		org.bukkit.material.Hopper hopperMaterial = (org.bukkit.material.Hopper) hopper.getData();
+		BlockFace attachedFace = hopperMaterial.getFacing();
+		
+		Block block = hopper.getBlock().getRelative(attachedFace);
+		
+		return block;
+	}
 }

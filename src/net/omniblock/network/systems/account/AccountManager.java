@@ -229,7 +229,7 @@ public class AccountManager {
 		ib.fill(new ItemBuilder(Material.STAINED_GLASS_PANE).durability((short) 15).name(TextUtil.format("&7-"))
 				.build(), RowsIntegers.ROW_6);
 
-		ib.addItem(new ItemBuilder(Material.CHEST).amount(1).name(TextUtil.format("&aGadgets &c&l(Proximamente)"))
+		ib.addItem(new ItemBuilder(Material.CHEST).amount(1).name(TextUtil.format("&aGadgets &c&l(PRÓXIMAMENTE)"))
 				.lore("").lore(TextUtil.format("&9&m-&r &7Disfruta eligiendo y luciendo diferentes"))
 				.lore(TextUtil.format("&7gadgets, animaciones y cosméticos para tu estadía"))
 				.lore(TextUtil.format("&7durante las lobbies y el tiempo de carga de una"))
@@ -254,10 +254,11 @@ public class AccountManager {
 
 				});
 
-		ib.addItem(new ItemBuilder(Material.FIREBALL).amount(1).name(TextUtil.format("&dPartículas &c&l(Proximamente)"))
-				.lore("").lore(TextUtil.format("&9&m-&r &7Encuentra tu partículas preferida y disfruta"))
-				.lore(TextUtil.format("&7¡teniendola activada durante los lobbies de toda la"))
-				.lore(TextUtil.format("&7network!")).lore("")
+		ib.addItem(new ItemBuilder(Material.FIREBALL).amount(1).name(TextUtil.format("&dPartículas &c&l(PRÓXIMAMENTE)"))
+				.lore("")
+				.lore(TextUtil.format("&9&m-&r &7Encuentra tus partículas preferidas y lúcelas"))
+				.lore(TextUtil.format("&7en las salas de espera de OmniBlock Network"))
+				.lore("")
 				.lore(TextUtil.format("&e(!) &fPara obtener particulas compra un rango"))
 				.lore(TextUtil.format("&fvisitando nuestra tienda: &btienda.omniblock.net")).lore("").build(), 16);
 
