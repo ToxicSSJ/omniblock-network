@@ -35,6 +35,10 @@ public class GameCMDAdapter implements Listener {
 		ACTIVED_COMMANDS.add("dinero");
 		ACTIVED_COMMANDS.add("trabajos");
 		ACTIVED_COMMANDS.add("warps");
+		ACTIVED_COMMANDS.add("tpa");
+		ACTIVED_COMMANDS.add("tpaccept");
+		ACTIVED_COMMANDS.add("tpdeny");
+		ACTIVED_COMMANDS.add("back");
 		ACTIVED_COMMANDS.add("warp");
 		ACTIVED_COMMANDS.add("home");
 		ACTIVED_COMMANDS.add("sethome");

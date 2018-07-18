@@ -9,6 +9,8 @@ public class GameLEAVEAdapter implements Listener {
 
 	@EventHandler
 	public void event(PlayerQuitEvent e) {
+		e.setQuitMessage(null);
+		
 		ExpirablePlayerData.handleDisconnection(e.getPlayer().getUniqueId());
 	}
 
