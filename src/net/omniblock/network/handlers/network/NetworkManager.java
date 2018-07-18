@@ -87,9 +87,13 @@ public class NetworkManager {
 						.setOtherserver(OmniNetwork.isOtherServer(NetworkManager.getServertype())).build()
 						.setReceiver(PacketSenderType.OMNICORE));
 
+				Packets.STREAMER.streamPacket(new RegisterSystemServerPacket()
+						.setServerType(servertype)
+						.setSocketport(ServerSocketAdapter.serverPort)
+						.build().setReceiver(PacketSenderType.OMNICORE));
 
 			}
-		}.runTaskLater(OmniNetwork.getInstance(), 2L);
+		}.runTaskLater(OmniNetwork.getInstance(), 1L);
 
 		if (gamepreset != GamePreset.NONE) {
 

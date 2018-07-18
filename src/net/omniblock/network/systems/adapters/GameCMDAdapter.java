@@ -36,6 +36,9 @@ public class GameCMDAdapter implements Listener {
 		ACTIVED_COMMANDS.add("trabajos");
 		ACTIVED_COMMANDS.add("warps");
 		ACTIVED_COMMANDS.add("warp");
+		ACTIVED_COMMANDS.add("home");
+		ACTIVED_COMMANDS.add("sethome");
+		ACTIVED_COMMANDS.add("makeWarp");
 		ACTIVED_COMMANDS.add("lobby");
 		ACTIVED_COMMANDS.add("hub");
 		ACTIVED_COMMANDS.add("spawn");

@@ -134,7 +134,7 @@ public class KickManager implements CommandExecutor {
 				}
 
 				Packets.STREAMER.streamPacket(
-						new PlayerSendKickPacket().setPlayername(sender.getName()).setModerator(sender.getName())
+						new PlayerSendKickPacket().setPlayername(player).setModerator(sender.getName())
 								.setReason(reason).build().setReceiver(PacketSenderType.OMNICORD));
 
 				sender.sendMessage(" ");
