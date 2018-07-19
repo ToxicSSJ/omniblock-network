@@ -34,6 +34,8 @@ public class GameCMDAdapter implements Listener {
 		ACTIVED_COMMANDS.add("money");
 		ACTIVED_COMMANDS.add("dinero");
 		ACTIVED_COMMANDS.add("trabajos");
+		ACTIVED_COMMANDS.add("tienda");
+		ACTIVED_COMMANDS.add("shop");
 		ACTIVED_COMMANDS.add("warps");
 		ACTIVED_COMMANDS.add("tpa");
 		ACTIVED_COMMANDS.add("tpaccept");
@@ -48,6 +50,8 @@ public class GameCMDAdapter implements Listener {
 		ACTIVED_COMMANDS.add("spawn");
 		ACTIVED_COMMANDS.add("fly");
 		ACTIVED_COMMANDS.add("pay");
+		ACTIVED_COMMANDS.add("help");
+		ACTIVED_COMMANDS.add("ayuda");
 
 		ACTIVED_COMMANDS.add("pblocks");
 		ACTIVED_COMMANDS.add("protectionb");
