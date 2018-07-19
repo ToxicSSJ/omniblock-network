@@ -46,6 +46,8 @@ public class GameCMDAdapter implements Listener {
 		ACTIVED_COMMANDS.add("lobby");
 		ACTIVED_COMMANDS.add("hub");
 		ACTIVED_COMMANDS.add("spawn");
+		ACTIVED_COMMANDS.add("fly");
+		ACTIVED_COMMANDS.add("pay");
 
 		ACTIVED_COMMANDS.add("pblocks");
 		ACTIVED_COMMANDS.add("protectionb");
