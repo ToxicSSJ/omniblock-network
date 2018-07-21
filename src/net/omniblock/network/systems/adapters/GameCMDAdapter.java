@@ -12,8 +12,8 @@ import net.omniblock.network.handlers.network.NetworkManager;
 
 public class GameCMDAdapter implements Listener {
 
-	public static Set<String> ACTIVED_COMMANDS = new HashSet<String>();
-	public static Set<String> BLOCKED_COMMANDS = new HashSet<String>();
+	public static Set<String> ACTIVED_COMMANDS = new HashSet<>();
+	public static Set<String> BLOCKED_COMMANDS = new HashSet<>();
 	
 	static {
 

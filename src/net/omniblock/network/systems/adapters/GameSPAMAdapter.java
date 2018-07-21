@@ -16,8 +16,8 @@ import net.omniblock.network.library.utils.TextUtil;
 
 public class GameSPAMAdapter implements Listener {
 
-	public static Map<Player, Integer> SPAM_COUNT = new HashMap<Player, Integer>();
-	public static Map<Player, BukkitTask> SPAM_TASK = new HashMap<Player, BukkitTask>();
+	public static Map<Player, Integer> SPAM_COUNT = new HashMap<>();
+	public static Map<Player, BukkitTask> SPAM_TASK = new HashMap<>();
 
 	public boolean canChat(Player player) {
 

@@ -13,7 +13,7 @@ public class GameSTRIKEAdapter implements Listener {
 
 	public static final String DEFAULT_STRIKE = "*****";
 
-	public static Set<String> STRIKE_WORDS = new HashSet<String>();
+	public static Set<String> STRIKE_WORDS = new HashSet<>();
 
 	static {
 

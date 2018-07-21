@@ -27,10 +27,10 @@ import net.omniblock.network.systems.rank.type.RankType;
 
 public class RankManager implements Listener, CommandExecutor {
 
-	public static Map<Player, PermissionAttachment> attachments = new HashMap<Player, PermissionAttachment>();
+	public static Map<Player, PermissionAttachment> attachments = new HashMap<>();
 
-	public static Map<RankType, Set<String>> permissions = new HashMap<RankType, Set<String>>();
-	public static Map<RankType, RankType> carriers = new HashMap<RankType, RankType>();
+	public static Map<RankType, Set<String>> permissions = new HashMap<>();
+	public static Map<RankType, RankType> carriers = new HashMap<>();
 	private static ExpirablePlayerData<RankType> cachedRanks = new ExpirablePlayerData<>();
 
 	@Override

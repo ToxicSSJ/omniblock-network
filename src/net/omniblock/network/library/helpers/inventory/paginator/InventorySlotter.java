@@ -46,7 +46,7 @@ public class InventorySlotter {
 				28, 29, 30, 31, 32, 33, 34
 				),
 
-		LINE(1, 2, 3, 4, 5, 6, 7, 8),
+		LINE(1, 2, 3, 4, 5, 6, 7),
 		
 		;
 		
