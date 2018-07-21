@@ -28,11 +28,14 @@ public class GameJOINAdapter implements Listener {
 			
 			put(RankType.GOLEM, "&8&l(&e✯&8&l) &7El jugador &rPLAYER&7 ha ingresado!");
 			put(RankType.TITAN, "&8&l(&e✯&8&l) &7El jugador &rPLAYER&7 ha ingresado!");
+			
 			put(RankType.HELPER, "&8&l(&a✯&8&l) &7El ayudante &rPLAYER&7 ha ingresado!");
 			put(RankType.MOD, "&8&l(&c✯&8&l) &7El moderador &rPLAYER&7 ha ingresado!");
-			put(RankType.GM, "&8&l(&9✯&8&l) &7El game master &rPLAYER&7 ha ingresado!");
+			put(RankType.BNF, "&8&l(&9✯&8&l) &7El benefactor &rPLAYER&7 ha ingresado!");
+			
+			put(RankType.GM, "&8&l(&b✯&8&l) &7El game master &rPLAYER&7 ha ingresado!");
 			put(RankType.ADMIN, "&8&l(&4✯&8&l) &7El administrador &rPLAYER&7 ha ingresado!");
-			put(RankType.CEO, "&8&l(&d✯&8&l) &7El director ejecutivo &rPLAYER&7 ha ingresado!");
+			put(RankType.DIRECTOR, "&8&l(&3✯&8&l) &7El director general &rPLAYER&7 ha ingresado!");
 			
 		}
 		

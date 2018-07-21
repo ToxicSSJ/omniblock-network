@@ -12,12 +12,6 @@ commands:
    omninetwork:
       aliases: [omninetwork, omnin, on]
       description: Comando principal de OmniNetwork.
-   ban:
-      aliases: [ban, banear]
-      description: Comando de administración de Baneos de OmniNetwork.
-   kick:
-      aliases: [kick, kickear]
-      description: Comando de administración de Kickeos de OmniNetwork.
    testsoccer:
       description: Comando de testeos de soccer.
    banco:

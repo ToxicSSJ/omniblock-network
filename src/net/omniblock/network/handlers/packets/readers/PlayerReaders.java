@@ -19,10 +19,8 @@ import net.omniblock.network.library.helpers.inventory.InventoryBuilder.Action;
 import net.omniblock.network.library.helpers.inventory.InventoryBuilder.RowsIntegers;
 import net.omniblock.network.library.utils.NumberUtil;
 import net.omniblock.network.library.utils.TextUtil;
-import net.omniblock.network.systems.EventPatcher;
 import net.omniblock.network.systems.account.AccountManager.AccountBoosterType;
 import net.omniblock.network.systems.account.items.NetworkBoosterType;
-import net.omniblock.network.systems.ban.BanManager;
 import net.omniblock.packets.network.Packets;
 import net.omniblock.packets.network.structure.data.PacketSocketData;
 import net.omniblock.packets.network.structure.data.PacketStructure;
@@ -30,7 +28,6 @@ import net.omniblock.packets.network.structure.data.PacketStructure.DataType;
 import net.omniblock.packets.network.structure.packet.PlayerSendTexturepackPacket;
 import net.omniblock.packets.network.structure.packet.PlayerSendToNamedServerPacket;
 import net.omniblock.packets.network.structure.packet.ResposeGamePartyInfoPacket;
-import net.omniblock.packets.network.structure.packet.ResposePlayerBanPacket;
 import net.omniblock.packets.network.structure.packet.ResposePlayerGameLobbiesPacket;
 import net.omniblock.packets.network.structure.packet.ResposePlayerNetworkBoosterPacket;
 import net.omniblock.packets.network.structure.type.PacketSenderType;
@@ -151,77 +148,6 @@ public class PlayerReaders {
 			@Override
 			public Class<ResposePlayerNetworkBoosterPacket> getAttachedPacketClass() {
 				return ResposePlayerNetworkBoosterPacket.class;
-			}
-
-		});
-
-		/*
-		 * 
-		 * Este reader es el encargado de expulsar a un usuario con el sistema
-		 * de baneo incluyendo el mensaje y efecto de baneo generado por el
-		 * sistema.
-		 * 
-		 */
-		Packets.READER.registerReader(new PacketReader<ResposePlayerBanPacket>() {
-
-			@Override
-			public void readPacket(PacketSocketData<ResposePlayerBanPacket> packetsocketdata) {
-
-				PacketStructure data = packetsocketdata.getStructure();
-
-				String name = data.get(DataType.STRINGS, "playername");
-				Player player = Bukkit.getPlayer(name);
-
-				if (player == null)
-					return;
-				if (player.isOnline()) {
-
-					player.getLocation().getWorld().strikeLightningEffect(player.getLocation());
-					player.getLocation().getWorld().strikeLightningEffect(player.getLocation());
-					player.getLocation().getWorld().strikeLightningEffect(player.getLocation());
-
-					if (BanManager.checkPlayerBan(player)) {
-
-						Bukkit.broadcastMessage("");
-						Bukkit.broadcastMessage(TextUtil
-								.getCenteredMessage("&7¡El jugador &4&l" + player.getName() + "&7 fue baneado!"));
-						Bukkit.broadcastMessage(TextUtil
-								.getCenteredMessage("&7Este jugador fue baneado por no cumplir con las normas o"));
-						Bukkit.broadcastMessage(TextUtil.getCenteredMessage("&7politicas de Omniblock Network."));
-						Bukkit.broadcastMessage("");
-
-						Bukkit.getPlayer(player.getName()).kickPlayer(BanManager.DUEDATE.containsKey(player.getName())
-								? new String(EventPatcher.YOURE_BANNED)
-										.replaceFirst("VAR_BAN_HASH",
-												BanManager.DUEDATE.get(player.getName()).getHash())
-										.replaceFirst("VAR_TO_DATE", BanManager.DUEDATE.get(player.getName()).getTo())
-										.replaceFirst("VAR_REASON",
-												BanManager.DUEDATE.get(player.getName()).getReason())
-								: EventPatcher.YOURE_BANNED_WITHOUT_VARS);
-
-						return;
-
-					} else {
-
-						Bukkit.broadcastMessage("");
-						Bukkit.broadcastMessage(TextUtil
-								.getCenteredMessage("&7¡El jugador &4&l" + player.getName() + "&7 fue baneado!"));
-						Bukkit.broadcastMessage(TextUtil
-								.getCenteredMessage("&7Este jugador fue baneado por no cumplir con las normas o"));
-						Bukkit.broadcastMessage(TextUtil.getCenteredMessage("&7politicas de Omniblock Network."));
-						Bukkit.broadcastMessage("");
-
-						Bukkit.getPlayer(player.getName()).kickPlayer(EventPatcher.YOURE_BANNED_WITHOUT_VARS);
-
-						return;
-
-					}
-				}
-			}
-
-			@Override
-			public Class<ResposePlayerBanPacket> getAttachedPacketClass() {
-				return ResposePlayerBanPacket.class;
 			}
 
 		});

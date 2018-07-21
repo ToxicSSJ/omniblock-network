@@ -15,12 +15,14 @@ public enum RankType {
 
 	GOLEM(1, true, false, "Golem", TextUtil.format("&8(&eGolem&8)")),
 	TITAN(2, true, false, "Titan", TextUtil.format("&8(&6Titan&8)")),
+	
 	HELPER(3, true, true, "Ayudante", TextUtil.format("&8(&aAY&8)")),
 	MOD(4, true, true, "Moderador", TextUtil.format("&8(&cMod&8)")),
-	BNF(5, true, true, "Benefactor", TextUtil.format("&8(&bBNF&8)")),
-	GM(6, true, true, "Game Master", TextUtil.format("&8(&9GM&8)")),
+	BNF(5, true, true, "Benefactor", TextUtil.format("&8(&9BNF&8)")),
+	
+	GM(6, true, true, "Game Master", TextUtil.format("&8(&bGM&8)")),
 	ADMIN(7, true, true, "Administrador", TextUtil.format("&8(&4Admin&8)")),
-	CEO(8, true, true, "CEO", TextUtil.format("&8(&dCEO&8)")),
+	DIRECTOR(8, true, true, "Director", TextUtil.format("&8(&3Dir&8)"))
 
 	;
 

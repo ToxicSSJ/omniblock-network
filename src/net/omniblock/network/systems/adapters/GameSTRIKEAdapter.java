@@ -38,8 +38,6 @@ public class GameSTRIKEAdapter implements Listener {
 	      STRIKE_WORDS.add("pútá");
 	      STRIKE_WORDS.add("pütá");
 	      STRIKE_WORDS.add("putá");
-	      STRIKE_WORDS.add("pta");
-	      STRIKE_WORDS.add("ptá");
 	      STRIKE_WORDS.add("hpt");
 	      STRIKE_WORDS.add("mamahuevo");
 	      STRIKE_WORDS.add("mamahuebo");
@@ -83,7 +81,6 @@ public class GameSTRIKEAdapter implements Listener {
 	      STRIKE_WORDS.add("zórrá");
 	      STRIKE_WORDS.add("bitch");
 	      STRIKE_WORDS.add("bítch");
-	      STRIKE_WORDS.add("lmao");
 	      STRIKE_WORDS.add("nazi");
 	      STRIKE_WORDS.add("názi");
 	      STRIKE_WORDS.add("nazí");
