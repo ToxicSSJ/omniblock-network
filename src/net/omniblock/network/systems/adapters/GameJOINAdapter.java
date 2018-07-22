@@ -29,6 +29,9 @@ public class GameJOINAdapter implements Listener {
 			put(RankType.GOLEM, "&8&l(&e✯&8&l) &7El jugador &rPLAYER&7 ha ingresado!");
 			put(RankType.TITAN, "&8&l(&e✯&8&l) &7El jugador &rPLAYER&7 ha ingresado!");
 			
+			put(RankType.TWITCH, "&8&l(&d►&8&l) &7El streamer &rPLAYER&7 ha ingresado!");
+			put(RankType.YOUTUBE, "&8&l(&c►&8&l) &7El youtuber &rPLAYER&7 ha ingresado!");
+			
 			put(RankType.HELPER, "&8&l(&a✯&8&l) &7El ayudante &rPLAYER&7 ha ingresado!");
 			put(RankType.MOD, "&8&l(&c✯&8&l) &7El moderador &rPLAYER&7 ha ingresado!");
 			put(RankType.BNF, "&8&l(&9✯&8&l) &7El benefactor &rPLAYER&7 ha ingresado!");
