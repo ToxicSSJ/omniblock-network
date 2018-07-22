@@ -17,15 +17,15 @@ public enum RankType {
 	TITAN(2, true, false, "Titan", TextUtil.format("&8(&6Titan&8)")),
 
 	YOUTUBE(3, true, false, "Youtube", TextUtil.format("&8(&cY&fT&8)")),
-	TWITCH(3, true, false, "Twitch", TextUtil.format("&8(&dTwitch&8)")),
+	TWITCH(4, true, false, "Twitch", TextUtil.format("&8(&dTwitch&8)")),
 
-	HELPER(3, true, true, "Ayudante", TextUtil.format("&8(&aAY&8)")),
-	MOD(4, true, true, "Moderador", TextUtil.format("&8(&cMod&8)")),
-	BNF(5, true, true, "Benefactor", TextUtil.format("&8(&9BNF&8)")),
+	HELPER(5, true, true, "Ayudante", TextUtil.format("&8(&aAY&8)")),
+	MOD(6, true, true, "Moderador", TextUtil.format("&8(&cMod&8)")),
+	BNF(7, true, true, "Benefactor", TextUtil.format("&8(&9BNF&8)")),
 	
-	GM(6, true, true, "Game Master", TextUtil.format("&8(&bGM&8)")),
-	ADMIN(7, true, true, "Administrador", TextUtil.format("&8(&4Admin&8)")),
-	DIRECTOR(8, true, true, "Director", TextUtil.format("&8(&3Dir&8)"))
+	GM(8, true, true, "Game Master", TextUtil.format("&8(&bGM&8)")),
+	ADMIN(9, true, true, "Administrador", TextUtil.format("&8(&4Admin&8)")),
+	DIRECTOR(10, true, true, "Director", TextUtil.format("&8(&3Dir&8)"))
 
 	;
 

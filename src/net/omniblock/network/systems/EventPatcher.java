@@ -1,6 +1,7 @@
 package net.omniblock.network.systems;
 
 import net.omniblock.network.OmniNetwork;
+import net.omniblock.network.library.helpers.inventory.InventoryBuilderListener;
 import net.omniblock.network.library.utils.TextUtil;
 import net.omniblock.network.systems.adapters.*;
 import net.omniblock.network.systems.rank.RankManager;
@@ -46,6 +47,8 @@ public class EventPatcher {
 		OmniNetwork.getInstance().getServer().getPluginManager().registerEvents(new GameCMDAdapter(),
 				OmniNetwork.getInstance());
 		OmniNetwork.getInstance().getServer().getPluginManager().registerEvents(new RankManager(),
+				OmniNetwork.getInstance());
+		OmniNetwork.getInstance().getServer().getPluginManager().registerEvents(new InventoryBuilderListener(),
 				OmniNetwork.getInstance());
 
 		// Listener SCREENS_LINSTENER = new ScreensEvents();
