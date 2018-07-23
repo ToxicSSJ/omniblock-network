@@ -1,6 +1,8 @@
 package net.omniblock.network.systems.adapters;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
@@ -44,6 +46,8 @@ public class GameJOINAdapter implements Listener {
 		
 	};
 	
+	public static final List<String> BLACK_LIST = new ArrayList<String>();
+	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onJoin(PlayerJoinEvent e) {
 
@@ -55,8 +59,9 @@ public class GameJOINAdapter implements Listener {
 			TagUtil.changePlayerName(e.getPlayer(), TextUtil.format(rank.getPrefix() + " &f"), "", TeamAction.CREATE);
 		
 		if(JOIN_MESSAGES.containsKey(rank) && ENABLED_JOIN_MESSAGE)
-			Bukkit.broadcastMessage(TextUtil.format(
-					JOIN_MESSAGES.get(rank).replaceFirst("PLAYER", rank.getCustomName(e.getPlayer(), 'f'))));
+			if(!BLACK_LIST.contains(e.getPlayer().getName()))
+				Bukkit.broadcastMessage(TextUtil.format(
+						JOIN_MESSAGES.get(rank).replaceFirst("PLAYER", rank.getCustomName(e.getPlayer(), 'f'))));
 		return;
 
 	}
