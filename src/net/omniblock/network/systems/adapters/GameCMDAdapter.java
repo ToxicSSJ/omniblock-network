@@ -40,6 +40,9 @@ public class GameCMDAdapter implements Listener {
 		ACTIVED_COMMANDS.add("tpa");
 		ACTIVED_COMMANDS.add("tpaccept");
 		ACTIVED_COMMANDS.add("tpdeny");
+		ACTIVED_COMMANDS.add("tpahere");
+		ACTIVED_COMMANDS.add("tphaccept");
+		ACTIVED_COMMANDS.add("tphdeny");
 		ACTIVED_COMMANDS.add("back");
 		ACTIVED_COMMANDS.add("warp");
 		ACTIVED_COMMANDS.add("home");
@@ -52,6 +55,8 @@ public class GameCMDAdapter implements Listener {
 		ACTIVED_COMMANDS.add("pay");
 		ACTIVED_COMMANDS.add("help");
 		ACTIVED_COMMANDS.add("ayuda");
+		ACTIVED_COMMANDS.add("stoggle");
+		ACTIVED_COMMANDS.add("st");
 
 		ACTIVED_COMMANDS.add("pblocks");
 		ACTIVED_COMMANDS.add("protectionb");
@@ -70,7 +75,7 @@ public class GameCMDAdapter implements Listener {
 				String cmd = e.getMessage().replaceFirst("/", "");
 				String[] cmdArguments = cmd.split(" ");
 				
-				if (!ACTIVED_COMMANDS.contains(cmdArguments[0])) {
+				if (!ACTIVED_COMMANDS.contains(cmdArguments[0].toLowerCase())) {
 					e.setCancelled(true);
 					e.getPlayer().sendMessage(NetworkManager.NOT_RECOGNIZED_COMMAND);
 				}
