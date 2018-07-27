@@ -12,6 +12,8 @@ package net.omniblock.network.library.helpers;
 
 import com.google.gson.Gson;
 
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
 import net.omniblock.network.library.utils.TextUtil;
 
 import org.apache.commons.lang.Validate;
@@ -33,9 +35,11 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.Base64.Encoder;
 
 public class ItemBuilder {
 
@@ -512,6 +516,56 @@ public class ItemBuilder {
         return this;
 
     }
+
+	public ItemBuilder setSkullOwnerUrl(String url) {
+		if (url == null || url.isEmpty())
+			return this;
+		SkullMeta skullMeta = (SkullMeta) item.getItemMeta();
+		GameProfile profile = new GameProfile(UUID.randomUUID(), null);
+		byte[] encodedData = Base64.getUrlEncoder().encode(String.format("{textures:{SKIN:{url:\"%s\"}}}", url).getBytes());
+		profile.getProperties().put("textures", new Property("textures", new String(encodedData)));
+		Field profileField = null;
+		try {
+			profileField = skullMeta.getClass().getDeclaredField("profile");
+		} catch (NoSuchFieldException | SecurityException e) {
+			e.printStackTrace();
+		}
+		if (profileField != null) {
+			profileField.setAccessible(true);
+		}
+		try {
+			profileField.set(skullMeta, profile);
+		} catch (IllegalArgumentException | IllegalAccessException | NullPointerException e) {
+			e.printStackTrace();
+		}
+		item.setItemMeta(skullMeta);
+		return this;
+	}
+
+	public ItemBuilder setSkullOwnerB64(String b64) {
+		if (b64 == null || b64.isEmpty())
+			return this;
+		SkullMeta skullMeta = (SkullMeta) item.getItemMeta();
+		GameProfile profile = new GameProfile(UUID.randomUUID(), null);
+		byte[] encodedData = b64.getBytes();
+		profile.getProperties().put("textures", new Property("textures", new String(encodedData)));
+		Field profileField = null;
+		try {
+			profileField = skullMeta.getClass().getDeclaredField("profile");
+		} catch (NoSuchFieldException | SecurityException e) {
+			e.printStackTrace();
+		}
+		if (profileField != null) {
+			profileField.setAccessible(true);
+		}
+		try {
+			profileField.set(skullMeta, profile);
+		} catch (IllegalArgumentException | IllegalAccessException | NullPointerException e) {
+			e.printStackTrace();
+		}
+		item.setItemMeta(skullMeta);
+		return this;
+	}
 
 	public ItemBuilder potion(PotionEffectType pet) {
 		Validate.notNull(pet, "The Potion Effect Type is null.");
