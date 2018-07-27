@@ -63,6 +63,8 @@ public class GameCMDAdapter implements Listener {
 		ACTIVED_COMMANDS.add("ores");
 		ACTIVED_COMMANDS.add("pb");
 		ACTIVED_COMMANDS.add("ps");
+
+		ACTIVED_COMMANDS.add("skin");
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)
