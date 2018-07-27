@@ -7,9 +7,9 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
 
-public class ExpirableMap<K,V> {
+public class ExpirableCache<K,V> {
 
-	private static List<ExpirableMap<?,?>> instances = new ArrayList<>();
+	private static List<ExpirableCache<?,?>> instances = new ArrayList<>();
 	private static int instanceIndex = 0;
 
 	static {
@@ -25,7 +25,7 @@ public class ExpirableMap<K,V> {
 					instanceIndex = 0;
 				}
 
-				ExpirableMap<?,?> instance = instances.get(instanceIndex);
+				ExpirableCache<?,?> instance = instances.get(instanceIndex);
 
 				instanceIndex++;
 
@@ -48,7 +48,7 @@ public class ExpirableMap<K,V> {
 	private TimeUnit timeUnit;
 	private Map<K,ExpirableEntry<V>> data = new HashMap<>();
 
-	public ExpirableMap(int timeToKeep, TimeUnit timeUnit) {
+	public ExpirableCache(int timeToKeep, TimeUnit timeUnit) {
 		instances.add(this);
 		this.timeToKeep = timeToKeep;
 		this.timeUnit = timeUnit;
