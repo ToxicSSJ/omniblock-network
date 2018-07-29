@@ -2,10 +2,8 @@ package net.omniblock.network.library.utils;
 
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+import java.util.function.BiConsumer;
 
 public class ExpirablePlayerData<T> {
 
@@ -55,6 +53,34 @@ public class ExpirablePlayerData<T> {
 
 	public T remove(UUID player) {
 		return players.remove(player);
+	}
+
+	public void forEach(BiConsumer<UUID, T> consumer) {
+		players.forEach(consumer);
+	}
+
+	public Set<Map.Entry<UUID, T>> entrySet() {
+		return players.entrySet();
+	}
+
+	public void clear() {
+		players.clear();
+	}
+
+	public int size() {
+		return players.size();
+	}
+
+	public boolean isEmpty() {
+		return players.isEmpty();
+	}
+
+	public Collection<T> values() {
+		return players.values();
+	}
+
+	public Set<UUID> keySet() {
+		return players.keySet();
 	}
 
 }
