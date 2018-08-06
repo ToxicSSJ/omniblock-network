@@ -65,6 +65,8 @@ public class GameCMDAdapter implements Listener {
 		ACTIVED_COMMANDS.add("ps");
 
 		ACTIVED_COMMANDS.add("skin");
+
+		ACTIVED_COMMANDS.add("pvp");
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)
