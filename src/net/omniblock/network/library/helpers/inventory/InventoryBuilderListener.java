@@ -66,12 +66,13 @@ public class InventoryBuilderListener implements Listener {
 		if (!(e.getWhoClicked() instanceof Player)) {
 			return;
 		}
+
 		Player p = (Player) e.getWhoClicked();
 		UUID u = currentInventory.get(p.getUniqueId());
 		if (u != null) {
 			e.setCancelled(true);
 			InventoryBuilder inventory = inventoryByUUID.get(u);
-			InventoryBuilder.Action action = inventory.getActions().get(e.getCurrentItem());
+			InventoryBuilder.Action action = inventory.getActions().get(e.getRawSlot());
 			if (action != null) {
 				action.click(e.getClick(), p);
 			}
