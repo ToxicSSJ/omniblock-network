@@ -20,6 +20,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 public class InventoryBuilderListener implements Listener {
@@ -62,6 +63,31 @@ public class InventoryBuilderListener implements Listener {
 	}
 
 	@EventHandler
+	public void onDragg(InventoryDragEvent e) {
+		if (!(e.getWhoClicked() instanceof Player)) {
+			return;
+		}
+
+		Player p = (Player) e.getWhoClicked();
+		UUID u = currentInventory.get(p.getUniqueId());
+		if (u != null) {
+			InventoryBuilder inventory = inventoryByUUID.get(u);
+
+			boolean insideProtectedInventory = false;
+			for(int rawSlot : e.getRawSlots()) {
+				if(rawSlot < inventory.getSize()) {
+					insideProtectedInventory = true;
+					break;
+				}
+			}
+
+			if(insideProtectedInventory) {
+				e.setCancelled(true);
+			}
+		}
+	}
+
+	@EventHandler
 	public void onClick(InventoryClickEvent e) {
 		if (!(e.getWhoClicked() instanceof Player)) {
 			return;
@@ -70,11 +96,15 @@ public class InventoryBuilderListener implements Listener {
 		Player p = (Player) e.getWhoClicked();
 		UUID u = currentInventory.get(p.getUniqueId());
 		if (u != null) {
-			e.setCancelled(true);
 			InventoryBuilder inventory = inventoryByUUID.get(u);
-			InventoryBuilder.Action action = inventory.getActions().get(e.getRawSlot());
-			if (action != null) {
-				action.click(e.getClick(), p);
+
+			if(e.isShiftClick() || e.getRawSlot() < inventory.getSize()) {
+				e.setCancelled(true);
+
+				InventoryBuilder.Action action = inventory.getActions().get(e.getRawSlot());
+				if (action != null) {
+					action.click(e.getClick(), p);
+				}
 			}
 		}
 	}
