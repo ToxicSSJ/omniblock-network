@@ -13,6 +13,7 @@ package net.omniblock.network.library.utils;
 import org.bukkit.ChatColor;
 import org.bukkit.map.MinecraftFont;
 
+@Deprecated
 public class TextUtil {
 
 	private final static int CENTER_PX = 154;

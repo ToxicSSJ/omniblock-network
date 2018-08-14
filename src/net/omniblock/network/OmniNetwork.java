@@ -1,5 +1,6 @@
 package net.omniblock.network;
 
+import net.omniblock.network.library.addons.configaddon.Factory;
 import net.omniblock.packets.network.structure.packet.RemoveSystemServerPacket;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -7,13 +8,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import net.omniblock.network.handlers.Handlers;
 import net.omniblock.network.handlers.base.sql.Database;
-import net.omniblock.network.handlers.network.NetworkManager;
-import net.omniblock.network.handlers.packets.PacketsAdapter;
-import net.omniblock.network.handlers.packets.PacketsTools;
-import net.omniblock.network.handlers.updater.object.Updatable;
-import net.omniblock.network.handlers.updater.type.PluginType;
-import net.omniblock.network.library.Libraries;
-import net.omniblock.network.library.addons.sshaddon.InternalAdapter;
 import net.omniblock.network.systems.AdapterPatcher;
 import net.omniblock.packets.OmniPackets;
 import net.omniblock.packets.network.Packets;
@@ -21,11 +15,11 @@ import net.omniblock.packets.network.socket.Sockets;
 import net.omniblock.packets.network.socket.helper.SocketHelper;
 import net.omniblock.packets.network.structure.packet.ServerRemoveInfoPacket;
 import net.omniblock.packets.network.structure.type.PacketSenderType;
-import net.omniblock.packets.object.external.GamePreset;
 import net.omniblock.packets.object.external.ServerType;
 import net.omniblock.packets.object.external.SystemType;
 
-public class OmniNetwork extends JavaPlugin implements Updatable {
+@Deprecated
+public class OmniNetwork extends JavaPlugin {
 
 	public static Plugin plugin;
 	public static OmniNetwork instance;
@@ -38,29 +32,22 @@ public class OmniNetwork extends JavaPlugin implements Updatable {
 		plugin = this;
 		instance = this;
 
-		if (debugMode) {
-			Handlers.LOGGER.sendWarning("&d[DEBUG MODE]", "&bOmniNetwork en modo &fDepuración & Prueba&b.");
-		}
+		Handlers.LOGGER.sendWarning(
+				"####################################",
+				"OmniNetwork Está siendo eliminado poco a poco",
+				"NO UTILICE ESTE PLUGIN COMO DEPENDENCIA YA QUE SUS",
+				"METODOS SERÁN ELIMINADOS.",
+				"####################################");
 
-		InternalAdapter.CONNECTION.setup();
-		if (update(PluginType.OMNINETWORK, this))
-			return;
+		if (debugMode)
+			Handlers.LOGGER.sendWarning("&d[DEBUG MODE]", "&bOmniNetwork en modo &fDepuración & Prueba&b.");
 
 		Implements();
 
 	}
 
 	@Override
-	public void onDisable() {
-
-		Packets.STREAMER.streamPacket(new ServerRemoveInfoPacket().setServername(Bukkit.getServerName()).build()
-				.setReceiver(PacketSenderType.OMNICORE));
-
-		Packets.STREAMER.streamPacket(new RemoveSystemServerPacket()
-				.setServer(OmniNetwork.getServerTypeByServername(Bukkit.getServerName()))
-				.build().setReceiver(PacketSenderType.OMNICORE));
-
-	}
+	public void onDisable() {}
 
 	/**
 	 * 
@@ -76,18 +63,13 @@ public class OmniNetwork extends JavaPlugin implements Updatable {
 	 * 
 	 */
 	public void Implements() {
+
 		Bukkit.getPluginManager().registerEvents(new SingleListener(), this);
 
 		Database.makeConnection();
-
 		OmniPackets.setupSystem(SystemType.OMNINETWORK);
-		PacketsAdapter.registerReaders();
-
-		Sockets.SERVER.startServer(SocketHelper.getOpenPort());
 
 		AdapterPatcher.setup();
-		PacketsTools.sendRegisterInfo();
-		Libraries.start();
 
 	}
 
@@ -102,56 +84,6 @@ public class OmniNetwork extends JavaPlugin implements Updatable {
 			}
 		}
 		return ServerType.MAIN_LOBBY_SERVER;
-	}
-
-	public static GamePreset getGamePresetByServername(String servername) {
-
-		if (NetworkManager.getServertype() == ServerType.SKYWARS_GAME_SERVER) {
-			return GamePreset.SKYWARS_MASK;
-		}
-
-		return GamePreset.NONE;
-	}
-
-	public static boolean isLobbyServer(ServerType type) {
-		for (ServerType st : ServerType.values()) {
-
-			if (st == ServerType.MAIN_LOBBY_SERVER) {
-				return true;
-			}
-
-		}
-		return false;
-	}
-
-	public static boolean isGameServer(ServerType type) {
-		for (ServerType st : ServerType.values()) {
-
-			if (st == ServerType.SKYWARS_GAME_SERVER) {
-				return true;
-			}
-
-		}
-		return false;
-	}
-
-	public static boolean isGameLobbyServer(ServerType type) {
-		for (ServerType st : ServerType.values()) {
-
-			if (st == ServerType.SKYWARS_LOBBY_SERVER) {
-				return true;
-			}
-
-		}
-		return false;
-	}
-
-	public static boolean isStaffServer(ServerType type) {
-		return false;
-	}
-
-	public static boolean isOtherServer(ServerType type) {
-		return false;
 	}
 
 }

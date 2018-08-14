@@ -16,6 +16,7 @@ import net.minecraft.server.v1_12_R1.BiomeBase.BiomeMeta;
 * you can share it, you can use it, with no permission whatsoever, I don't mind :)
 * @author jetp250
 */
+@Deprecated
 public final class EntityNMSUtils {
  
     private static final Field META_LIST_MONSTER;

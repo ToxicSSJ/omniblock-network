@@ -19,6 +19,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 
 import net.omniblock.network.handlers.base.sql.type.TableType;
 
+@Deprecated
 public class PlayerLoginListener implements Listener {
 
 	@EventHandler(priority = EventPriority.MONITOR)

@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.Calendar;
 import java.util.UUID;
 
+@Deprecated
 public class DataStorage {
 
 	public Calendar calendar = Calendar.getInstance();

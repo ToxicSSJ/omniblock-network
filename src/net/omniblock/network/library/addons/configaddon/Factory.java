@@ -5,6 +5,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import net.omniblock.network.OmniNetwork;
 import net.omniblock.network.library.addons.configaddon.object.Config;
 
+@Deprecated
 public class Factory {
 
 	public enum ConfigType {

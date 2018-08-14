@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+@Deprecated
 public class NMSUtils {
 
 	public static int getPing(Player player) {

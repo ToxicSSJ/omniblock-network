@@ -10,9 +10,11 @@
 
 package net.omniblock.network.handlers.base.sql.type;
 
+@Deprecated
 public enum OrderByType {
 
-	ASC("ASC"), DESC("DESC");
+	ASC("ASC"),
+	DESC("DESC");
 
 	private String string;
 

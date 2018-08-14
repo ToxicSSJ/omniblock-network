@@ -12,6 +12,7 @@ package net.omniblock.network.library.utils;
 
 import java.util.Calendar;
 
+@Deprecated
 public class CalendarUtils {
 
 	public enum WeekDay {

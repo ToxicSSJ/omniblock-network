@@ -17,6 +17,7 @@ import net.omniblock.network.OmniNetwork;
 import net.omniblock.network.library.helpers.actions.MultipleEventListener;
 import net.omniblock.network.library.helpers.actions.SimpleEventListener;
 
+@Deprecated
 public class ActionsPatcher implements Listener {
 
 	private static Map<Class<?>, Set<SimpleEventListener<?>>> simpleListeners = Maps.newHashMap();

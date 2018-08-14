@@ -17,6 +17,7 @@ import com.google.common.collect.Lists;
  * @author zlToxicNetherlz
  *
  */
+@Deprecated
 public class InventoryUtils {
 
 	/**

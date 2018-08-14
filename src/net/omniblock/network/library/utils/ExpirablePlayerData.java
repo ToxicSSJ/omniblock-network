@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import java.util.*;
 import java.util.function.BiConsumer;
 
+@Deprecated
 public class ExpirablePlayerData<T> {
 
 	private static HashSet<ExpirablePlayerData<?>> instances = new HashSet<>();

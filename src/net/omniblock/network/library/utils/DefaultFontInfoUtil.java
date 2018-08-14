@@ -1,5 +1,6 @@
 package net.omniblock.network.library.utils;
 
+@Deprecated
 public enum DefaultFontInfoUtil {
 
 	A('A', 5), a('a', 5), B('B', 5), b('b', 5), C('C', 5), c('c', 5), D('D', 5), d('d', 5), E('E', 5), e('e', 5), F('F',

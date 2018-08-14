@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import java.util.*;
 import java.util.stream.Stream;
 
+@Deprecated
 public class PlayerCache<T> {
 
 	private static Set<PlayerCache<?>> INSTANCES = new HashSet<>();

@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import net.omniblock.network.OmniNetwork;
 import net.omniblock.network.library.utils.TextUtil;
 
+@Deprecated
 public class LoggerHandler {
 
 	public void sendLoggerInfo(String... lines) {

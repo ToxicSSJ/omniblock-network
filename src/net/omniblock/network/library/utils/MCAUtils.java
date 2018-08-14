@@ -16,6 +16,7 @@ import net.minecraft.server.v1_12_R1.RegionFile;
 import net.minecraft.server.v1_12_R1.RegionFileCache;
 import net.minecraft.server.v1_12_R1.WorldServer;
 
+@Deprecated
 public class MCAUtils {
 
 	public static List<Chunk> getChunksByMCAFiles(World world) {

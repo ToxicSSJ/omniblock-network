@@ -1,5 +1,6 @@
 package net.omniblock.network.library.utils;
 
+@Deprecated
 public class TimingsUtil {
 
 	private static long timeStart = 0L;

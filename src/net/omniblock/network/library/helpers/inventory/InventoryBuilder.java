@@ -26,6 +26,7 @@ import org.bukkit.inventory.ItemStack;
 import net.omniblock.network.library.helpers.ItemBuilder;
 import net.omniblock.network.library.utils.TextUtil;
 
+@Deprecated
 public class InventoryBuilder {
 
 	private UUID id = UUID.randomUUID();

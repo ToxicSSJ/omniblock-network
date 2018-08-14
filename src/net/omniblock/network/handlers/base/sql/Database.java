@@ -24,6 +24,7 @@ import net.omniblock.network.handlers.base.sql.type.TableType;
 import net.omniblock.network.library.addons.configaddon.Factory.ConfigType;
 import net.omniblock.network.library.utils.TextUtil;
 
+@Deprecated
 public class Database {
 
 	public static Connection conn = null;

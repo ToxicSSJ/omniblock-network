@@ -20,6 +20,7 @@ import org.bukkit.plugin.Plugin;
 import net.omniblock.network.handlers.Handlers;
 import net.omniblock.network.library.utils.FileRefactorUtil;
 
+@Deprecated
 public class Config {
 
 	public Plugin plugin;

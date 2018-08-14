@@ -28,6 +28,7 @@ import net.omniblock.packets.network.structure.type.PacketSenderType;
 import net.omniblock.packets.object.external.GamePreset;
 import net.omniblock.packets.object.external.ServerType;
 
+@Deprecated
 public class NetworkManager {
 
 	/**
@@ -41,7 +42,7 @@ public class NetworkManager {
 	 * Sección de variables que utiliza el NetworkManager para la comunicación
 	 * entre serv - bungeecord - serv.
 	 */
-	private static ServerType servertype = ServerType.MAIN_LOBBY_SERVER;
+	private static ServerType servertype = ServerType.SURVIVAL;
 	private static GamePreset gamepreset = GamePreset.NONE;
 
 	private static Date serverDate;
@@ -50,80 +51,8 @@ public class NetworkManager {
 	/**
 	 * Estos metodos dan inicio y comprobación al estado del canal de datos.
 	 */
-	public static void start() {
-
-		Calendar time = Calendar.getInstance();
-		time.add(Calendar.MILLISECOND, -time.getTimeZone().getOffset(time.getTimeInMillis()));
-		setServerDate(time.getTime());
-		setServerCalendar(time);
-
-		servertype = OmniNetwork.getServerTypeByServername(Bukkit.getServerName());
-		gamepreset = OmniNetwork.getGamePresetByServername(Bukkit.getServerName());
-
-		new BukkitRunnable() {
-			@Override
-			public void run() {
-
-				Packets.STREAMER.streamPacket(new RegisterSystemServerPacket()
-						.setServerType(servertype)
-						.setSocketport(ServerSocketAdapter.serverPort)
-						.build().setReceiver(PacketSenderType.OMNICORE));
-
-				Handlers.LOGGER
-						.sendInfo(TextUtil.format("&7Se ha detectado este servidor como: " + servertype.toString()));
-
-				Packets.STREAMER.streamPacket(new ServerStructureInfoPacket()
-
-						.setServername(Bukkit.getServerName()).setServerport(Bukkit.getPort())
-						.setSocketport(ServerSocketAdapter.serverPort).setServertype(servertype)
-
-						.setOnlineplayers(Bukkit.getOnlinePlayers().size()).setMaxplayers(Bukkit.getMaxPlayers())
-						.setMapname(Bukkit.getWorlds().get(0).getName()).setInfo("")
-
-						.setFull(false).setLobbyserver(OmniNetwork.isLobbyServer(NetworkManager.getServertype()))
-						.setGameserver(OmniNetwork.isGameServer(NetworkManager.getServertype()))
-						.setGamelobbyserver(OmniNetwork.isGameLobbyServer(NetworkManager.getServertype()))
-						.setStaffserver(OmniNetwork.isStaffServer(NetworkManager.getServertype()))
-						.setOtherserver(OmniNetwork.isOtherServer(NetworkManager.getServertype())).build()
-						.setReceiver(PacketSenderType.OMNICORE));
-
-				Packets.STREAMER.streamPacket(new RegisterSystemServerPacket()
-						.setServerType(servertype)
-						.setSocketport(ServerSocketAdapter.serverPort)
-						.build().setReceiver(PacketSenderType.OMNICORE));
-
-			}
-		}.runTaskLater(OmniNetwork.getInstance(), 1L);
-
-		if (gamepreset != GamePreset.NONE) {
-
-			new BukkitRunnable() {
-				@Override
-				public void run() {
-
-					Handlers.LOGGER.sendInfo(TextUtil
-							.format("&7Se ha detectado un minijuego en este servidor: " + gamepreset.toString()));
-
-					Packets.STREAMER.streamPacket(new GameStructureInfoPacket()
-							.setServername(Bukkit.getServerName())
-							.setGamepreset(gamepreset)
-
-							.setMinimiumplayers(2)
-							.setMaximiumplayers(12)
-
-							.setOnlineplayers(Bukkit.getOnlinePlayers() != null ? Bukkit.getOnlinePlayers().size() : 0)
-
-							.setMapname("OmniMundo").setExtrainfo("")
-
-							.setLocked(false).setStarted(false).setReload(false).setNext(false).build()
-							.setReceiver(PacketSenderType.OMNICORE));
-
-				}
-			}.runTaskLater(OmniNetwork.getInstance(), 20 * 2);
-
-		}
-
-	}
+	@Deprecated
+	public static void start() {}
 
 	public static Date getServerDate() {
 		return serverDate;

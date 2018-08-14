@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.ChatColor;
 
+@Deprecated
 public class Scroller {
 
 	private static final char COLOUR_CHAR = '§';

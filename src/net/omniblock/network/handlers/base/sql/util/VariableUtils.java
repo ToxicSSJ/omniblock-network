@@ -2,19 +2,14 @@ package net.omniblock.network.handlers.base.sql.util;
 
 import org.apache.commons.lang.StringUtils;
 
-import net.omniblock.network.handlers.base.sql.type.ItemType;
-import net.omniblock.network.systems.rank.type.RankType;
-
+@Deprecated
 public class VariableUtils {
 
 	public static final String COMMON_SEPARATOR = ";";
 
-	public static RankType RANK_INITIAL_RANK = RankType.USER;
-
 	public static int BANK_INITIAL_EXP = 0;
 	public static int BANK_INITIAL_MONEY = 100;
 	public static int BANK_INITIAL_VIP_POINTS = 0;
-	public static String BANK_INITIAL_ITEMS = ItemType.GIF_MINI_COW_PET.getHashid();
 
 	public static String SKYWARS_INITIAL_ITEMS = "J0;K0";
 	public static int SKYWARS_INITIAL_EXTRA_POINTS = 0;
@@ -80,7 +75,6 @@ public class VariableUtils {
 
 	public enum StartVariables {
 
-		P_RANK("VAR_P_RANK", RANK_INITIAL_RANK),
 		P_TEMPORAL_RANK("VAR_P_TEMP_RANK", ""),
 		P_TEMPORAL_RANK_EXPIRE("VAR_P_TEMP_EXPIRE", ""),
 
@@ -90,7 +84,6 @@ public class VariableUtils {
 		P_EXP("VAR_P_EXP", BANK_INITIAL_EXP),
 		P_MONEY("VAR_P_MONEY", BANK_INITIAL_MONEY),
 		P_VIP_POINTS("VAR_P_VIP_POINTS", BANK_INITIAL_VIP_POINTS),
-		P_BANK_ITEMS("VAR_P_BANK_ITEMS", BANK_INITIAL_ITEMS),
 
 		P_PASS("VAR_P_PASS", "$ZPASS"),
 		P_EMAIL("VAR_P_EMAIL", "omniblockmc@gmail.com"),

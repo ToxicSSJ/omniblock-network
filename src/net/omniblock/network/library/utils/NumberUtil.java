@@ -2,6 +2,7 @@ package net.omniblock.network.library.utils;
 
 import java.util.Random;
 
+@Deprecated
 public class NumberUtil {
 
 	public static int valueOf(String number) {

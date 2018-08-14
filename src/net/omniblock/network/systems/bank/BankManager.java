@@ -11,6 +11,7 @@ import net.omniblock.network.handlers.network.NetworkManager;
 import net.omniblock.network.library.utils.NumberUtil;
 import net.omniblock.network.library.utils.TextUtil;
 
+@Deprecated
 public class BankManager implements CommandExecutor {
 
 	@Override

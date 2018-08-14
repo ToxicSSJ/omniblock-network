@@ -1,5 +1,6 @@
 package net.omniblock.network.systems;
 
+@Deprecated
 public class AdapterPatcher {
 
 	public static void setup() {

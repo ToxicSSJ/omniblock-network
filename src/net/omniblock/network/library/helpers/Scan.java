@@ -17,6 +17,7 @@ import com.google.common.collect.Maps;
 
 import net.omniblock.network.library.utils.MCAUtils;
 
+@Deprecated
 public class Scan {
 
 	public static Map<String, List<Chunk>> WORLD_CHUNKS = new HashMap<String, List<Chunk>>();

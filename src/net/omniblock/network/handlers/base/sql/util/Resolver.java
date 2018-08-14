@@ -18,6 +18,7 @@ import com.google.common.base.Charsets;
 
 import net.omniblock.network.handlers.base.sql.make.MakeSQLQuery;
 
+@Deprecated
 public class Resolver {
 
 	public static UUID getOfflineUUID(Player p) {

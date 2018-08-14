@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 
+@Deprecated
 public class ScoreboardUtil {
 	private ScoreboardUtil() {
 	}

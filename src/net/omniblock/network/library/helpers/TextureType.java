@@ -9,6 +9,7 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.PacketContainer;
 
+@Deprecated
 public enum TextureType {
 
 	OMNIBLOCK_DEFAULT(
@@ -63,24 +64,7 @@ public enum TextureType {
 		return format;
 	}
 	
-	public void sendPack(Player player){
-		
-		System.out.println("testing... " + url);
-		
-		ProtocolManager manager = ProtocolLibrary.getProtocolManager();;
-		
-		player.setResourcePack("[url]" + url + "[/url]");
-		
-		PacketContainer resourcePackSend = manager.createPacket(PacketType.Play.Server.RESOURCE_PACK_SEND);
-		resourcePackSend.getStrings().write(0, url).write(1, hash);
-		
-		try {
-			manager.sendServerPacket(player, resourcePackSend);
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		}
-		
-	}
+	public void sendPack(Player player){}
 	
 	public static TextureType getFromName(String name) {
 		

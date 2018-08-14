@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 
+@Deprecated
 public class LocationUtil {
 
 	public static Location fromString(String string) {

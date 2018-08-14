@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+@Deprecated
 public class FileRefactorUtil {
 
 	public static void copyFile(InputStream in, File file) {

@@ -12,6 +12,7 @@ import org.bukkit.Location;
  * @author zlToxicNetherlz
  *
  */
+@Deprecated
 public class LocationUtils {
 
 	/**

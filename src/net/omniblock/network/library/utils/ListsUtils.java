@@ -13,6 +13,7 @@ package net.omniblock.network.library.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 public class ListsUtils {
 
 	public static List<String> getStringList(String... strings) {

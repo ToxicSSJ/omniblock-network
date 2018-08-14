@@ -19,6 +19,7 @@ import java.util.Map.Entry;
 import net.omniblock.network.handlers.base.sql.Database;
 import net.omniblock.network.handlers.base.sql.type.TableType;
 
+@Deprecated
 public class MakeSQLUpdate {
 
 	private TableType table;

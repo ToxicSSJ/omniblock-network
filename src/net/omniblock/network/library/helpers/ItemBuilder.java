@@ -41,6 +41,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.Base64.Encoder;
 
+@Deprecated
 public class ItemBuilder {
 
 	private ItemStack item;

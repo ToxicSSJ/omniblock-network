@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
 
+@Deprecated
 public class ExpirableCache<K,V> {
 
 	private static List<ExpirableCache<?,?>> instances = new ArrayList<>();

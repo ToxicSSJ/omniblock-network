@@ -18,6 +18,7 @@ import org.bukkit.block.Sign;
  * @author zlToxicNetherlz
  *
  */
+@Deprecated
 public class TileUtils {
 
 	/**

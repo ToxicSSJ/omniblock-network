@@ -16,6 +16,7 @@ import java.util.Map;
  * @author wirlie
  *
  */
+@Deprecated
 public class SQLResultSet {
 
 	private List<Map<String, Object>> data;

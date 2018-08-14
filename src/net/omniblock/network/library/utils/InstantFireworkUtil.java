@@ -9,6 +9,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.inventory.meta.FireworkMeta;
 
+@Deprecated
 public class InstantFireworkUtil {
 
 	public static void spawn(Location loc) {

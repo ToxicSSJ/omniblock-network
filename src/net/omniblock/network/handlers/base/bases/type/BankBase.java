@@ -12,6 +12,7 @@ import net.omniblock.network.handlers.base.sql.util.Resolver;
 import net.omniblock.network.handlers.base.sql.util.SQLResultSet;
 import net.omniblock.network.handlers.base.sql.util.VariableUtils;
 
+@Deprecated
 public class BankBase {
 
 	public static final int baseXP = 250;

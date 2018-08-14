@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
+@Deprecated
 public class WebUtils {
 
 	public static String readUrl(String urlString) throws Exception {

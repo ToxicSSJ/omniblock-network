@@ -2,10 +2,10 @@
   <artifact type="jar" name="Omniblock-Network:jar">
     <output-path>$PROJECT_DIR$/../CompiledJars</output-path>
     <root id="archive" name="Omniblock-Network.jar">
-      <element id="module-output" name="Omniblock-Network" />
       <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../Libs/cglib-2.2.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../Libs/jsch-0.1.54.jar" path-in-jar="/" />
+      <element id="module-output" name="Omniblock-Network" />
+      <element id="dir-copy" path="$PROJECT_DIR$/database" />
+      <element id="dir-copy" path="$PROJECT_DIR$/ssh" />
     </root>
   </artifact>
 </component>

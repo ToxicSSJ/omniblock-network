@@ -13,6 +13,7 @@ import net.omniblock.network.handlers.base.sql.Database;
 import net.omniblock.network.handlers.base.sql.type.TableType;
 import net.omniblock.network.handlers.base.sql.util.SQLResultSet;
 
+@Deprecated
 public class MakeAdvancedSQLQuery {
 
 	private List<Map<String, Object>> results = new ArrayList<Map<String, Object>>();

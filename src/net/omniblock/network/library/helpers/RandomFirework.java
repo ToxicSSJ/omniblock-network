@@ -9,6 +9,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.inventory.meta.FireworkMeta;
 
+@Deprecated
 public class RandomFirework {
 
 	public static Firework[] spawnRandomFirework(final Location loc, int quantity) {

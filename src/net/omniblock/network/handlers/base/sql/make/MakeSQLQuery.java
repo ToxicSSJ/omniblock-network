@@ -28,6 +28,7 @@ import net.omniblock.network.handlers.base.sql.type.OrderByType;
 import net.omniblock.network.handlers.base.sql.type.TableType;
 import net.omniblock.network.handlers.base.sql.util.SQLResultSet;
 
+@Deprecated
 public class MakeSQLQuery {
 
 	private String tablename;
